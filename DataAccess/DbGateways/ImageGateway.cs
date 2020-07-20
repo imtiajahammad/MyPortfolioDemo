@@ -10,7 +10,7 @@ namespace DataAccess.DbGateways
 {
     public class ImageGateway
     {
-        public List<SmallTextListDataModel> getHomeImageByUserId(int userid)
+        public List<SmallTextListDataModel> getHomeImageByUserId(int userid, int defaultId)
         {
             List<SmallTextListDataModel> list = new List<SmallTextListDataModel>();
             using (SqlConnection aSqlConnection
@@ -20,6 +20,8 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "get_selfImages_homeImageList_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Parameters.AddWithValue("defaultId", defaultId);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();

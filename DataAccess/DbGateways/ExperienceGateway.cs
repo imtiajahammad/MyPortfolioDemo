@@ -10,7 +10,7 @@ namespace DataAccess.DbGateways
 {
     public class ExperienceGateway
     {
-        public List<SingleSmallTextModel> getCompanyNameByUserId(int userid)
+        public List<SingleSmallTextModel> getCompanyNameByUserId(int userid, int defaultId)
         {
             List<SingleSmallTextModel> list = new List<SingleSmallTextModel>();
             using (SqlConnection aSqlConnection
@@ -20,6 +20,8 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "get_experience_companyName_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Parameters.AddWithValue("defaultId", defaultId);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
@@ -36,7 +38,7 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
-        public List<SingleSmallTextModel> getYourRoleByUserId(int userid)
+        public List<SingleSmallTextModel> getYourRoleByUserId(int userid, int defaultId)
         {
             List<SingleSmallTextModel> list = new List<SingleSmallTextModel>();
             using (SqlConnection aSqlConnection
@@ -46,6 +48,8 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "get_experience_yourRole_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Parameters.AddWithValue("defaultId", defaultId);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
@@ -62,7 +66,7 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
-        public List<SingleLargeTextModel> getResponsibilityBriefByUserId(int userid)
+        public List<SingleLargeTextModel> getResponsibilityBriefByUserId(int userid, int defaultId)
         {
             List<SingleLargeTextModel> list = new List<SingleLargeTextModel>();
             using (SqlConnection aSqlConnection
@@ -72,6 +76,8 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "get_experience_responsibilityBrief_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Parameters.AddWithValue("defaultId", defaultId);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
@@ -89,7 +95,7 @@ namespace DataAccess.DbGateways
             return list;
         }
 
-        public List<LargeTextListDataModel> getResponsibilitiesPointByUserId(int userid)
+        public List<LargeTextListDataModel> getResponsibilitiesPointByUserId(int userid, int defaultId)
         {
             List<LargeTextListDataModel> list = new List<LargeTextListDataModel>();
             using (SqlConnection aSqlConnection
@@ -99,6 +105,8 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "get_experience_responsibilitiesPoint_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Parameters.AddWithValue("defaultId", defaultId);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
@@ -116,7 +124,7 @@ namespace DataAccess.DbGateways
             return list;
         }
 
-        public List<LargeTextListDataModel> getAccomplishmentsPointByUserId(int userid)
+        public List<LargeTextListDataModel> getAccomplishmentsPointByUserId(int userid, int defaultId)
         {
             List<LargeTextListDataModel> list = new List<LargeTextListDataModel>();
             using (SqlConnection aSqlConnection
@@ -126,6 +134,8 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "get_experience_accomplishmentsPoint_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Parameters.AddWithValue("defaultId", defaultId);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
@@ -143,7 +153,7 @@ namespace DataAccess.DbGateways
             return list;
         }
 
-        public List<SingleSmallTextModel> getWorkLocationByUserId(int userid)
+        public List<SingleSmallTextModel> getWorkLocationByUserId(int userid, int defaultId)
         {
             List<SingleSmallTextModel> list = new List<SingleSmallTextModel>();
             using (SqlConnection aSqlConnection
@@ -153,6 +163,8 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "get_experience_workLocation_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Parameters.AddWithValue("defaultId", defaultId);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
@@ -170,7 +182,7 @@ namespace DataAccess.DbGateways
             return list;
         }
 
-        public List<SingleDateModel> getStartDateByUserId(int userid)
+        public List<SingleDateModel> getStartDateByUserId(int userid, int defaultId)
         {
             List<SingleDateModel> list = new List<SingleDateModel>();
             using (SqlConnection aSqlConnection
@@ -180,6 +192,8 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "get_experience_startDate_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Parameters.AddWithValue("defaultId", defaultId);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
@@ -197,7 +211,7 @@ namespace DataAccess.DbGateways
             return list;
         }
 
-        public List<SingleDateModel> getEndDateByUserId(int userid)
+        public List<SingleDateModel> getEndDateByUserId(int userid, int defaultId)
         {
             List<SingleDateModel> list = new List<SingleDateModel>();
             using (SqlConnection aSqlConnection
@@ -207,6 +221,8 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "get_experience_endDate_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Parameters.AddWithValue("defaultId", defaultId);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
@@ -223,7 +239,7 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
-        public List<SingleLargeTextModel> getCompanyLinkByUserId(int userid)
+        public List<SingleLargeTextModel> getCompanyLinkByUserId(int userid, int defaultId)
         {
             List<SingleLargeTextModel> list = new List<SingleLargeTextModel>();
             using (SqlConnection aSqlConnection
@@ -233,6 +249,8 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "get_experience_companyLink_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Parameters.AddWithValue("defaultId", defaultId);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();

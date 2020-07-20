@@ -10,7 +10,7 @@ namespace DataAccess.DbGateways
 {
     public class ProjectGateway
     {
-        public List<SmallTextListDataModel> getTechnologyTypeByUserId(int userid)
+        public List<SmallTextListDataModel> getTechnologyTypeByUserId(int userid, int defaultId)
         {
             List<SmallTextListDataModel> list = new List<SmallTextListDataModel>();
             using (SqlConnection aSqlConnection
@@ -20,6 +20,8 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "get_Projects_technologyType_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Parameters.AddWithValue("defaultId", defaultId);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
@@ -36,7 +38,7 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
-        public List<SmallTextListDataModel> getImagesByUserId(int userid)
+        public List<SmallTextListDataModel> getImagesByUserId(int userid, int defaultId)
         {
             List<SmallTextListDataModel> list = new List<SmallTextListDataModel>();
             using (SqlConnection aSqlConnection
@@ -46,6 +48,8 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "get_Projects_images_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Parameters.AddWithValue("defaultId", defaultId);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
@@ -62,7 +66,7 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
-        public List<SingleSmallTextModel> getProjectNameByUserId(int userid)
+        public List<SingleSmallTextModel> getProjectNameByUserId(int userid, int defaultId)
         {
             List<SingleSmallTextModel> list = new List<SingleSmallTextModel>();
             using (SqlConnection aSqlConnection
@@ -72,6 +76,8 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "get_Projects_projectName_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Parameters.AddWithValue("defaultId", defaultId);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
@@ -89,7 +95,7 @@ namespace DataAccess.DbGateways
             return list;
         }
 
-        public List<SingleSmallTextModel> getProjectSubNameByUserId(int userid)
+        public List<SingleSmallTextModel> getProjectSubNameByUserId(int userid, int defaultId)
         {
             List<SingleSmallTextModel> list = new List<SingleSmallTextModel>();
             using (SqlConnection aSqlConnection
@@ -99,6 +105,8 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "get_Projects_projectSubName_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Parameters.AddWithValue("defaultId", defaultId);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
@@ -116,7 +124,7 @@ namespace DataAccess.DbGateways
             return list;
         }
 
-        public List<LargeTextListDataModel> getProjectBriefByUserId(int userid)
+        public List<LargeTextListDataModel> getProjectBriefByUserId(int userid, int defaultId)
         {
             List<LargeTextListDataModel> list = new List<LargeTextListDataModel>();
             using (SqlConnection aSqlConnection
@@ -126,6 +134,8 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "get_Projects_projectBrief_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Parameters.AddWithValue("defaultId", defaultId);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
@@ -143,7 +153,7 @@ namespace DataAccess.DbGateways
             return list;
         }
 
-        public List<LargeTextListDataModel> getProjectKeyPointsByUserId(int userid)
+        public List<LargeTextListDataModel> getProjectKeyPointsByUserId(int userid, int defaultId)
         {
             List<LargeTextListDataModel> list = new List<LargeTextListDataModel>();
             using (SqlConnection aSqlConnection
@@ -153,6 +163,8 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "get_Projects_projectKeyPoints_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Parameters.AddWithValue("defaultId", defaultId);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
@@ -169,7 +181,7 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
-        public List<LargeTextListDataModel> getProjectTechnologyBriefByUserId(int userid)
+        public List<LargeTextListDataModel> getProjectTechnologyBriefByUserId(int userid, int defaultId)
         {
             List<LargeTextListDataModel> list = new List<LargeTextListDataModel>();
             using (SqlConnection aSqlConnection
@@ -179,6 +191,8 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "get_Projects_projectTechnologyBrief_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Parameters.AddWithValue("defaultId", defaultId);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
@@ -196,7 +210,7 @@ namespace DataAccess.DbGateways
             return list;
         }
 
-        public List<SmallTextListDataModel> getProjectTechnologiesByUserId(int userid)
+        public List<SmallTextListDataModel> getProjectTechnologiesByUserId(int userid, int defaultId)
         {
             List<SmallTextListDataModel> list = new List<SmallTextListDataModel>();
             using (SqlConnection aSqlConnection
@@ -206,6 +220,8 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "get_Projects_projectTechnologies_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Parameters.AddWithValue("defaultId", defaultId);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
@@ -222,7 +238,7 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
-        public List<SmallTextListDataModel> getProjectTechnologiesIconsByUserId(int userid)
+        public List<SmallTextListDataModel> getProjectTechnologiesIconsByUserId(int userid, int defaultId)
         {
             List<SmallTextListDataModel> list = new List<SmallTextListDataModel>();
             using (SqlConnection aSqlConnection
@@ -232,6 +248,8 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "get_Projects_projectTechnologiesIcons_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Parameters.AddWithValue("defaultId", defaultId);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
@@ -249,7 +267,7 @@ namespace DataAccess.DbGateways
             return list;
         }
 
-        public List<SingleLargeTextModel> getProjectLiveLinkByUserId(int userid)
+        public List<SingleLargeTextModel> getProjectLiveLinkByUserId(int userid, int defaultId)
         {
             List<SingleLargeTextModel> list = new List<SingleLargeTextModel>();
             using (SqlConnection aSqlConnection
@@ -259,6 +277,8 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "get_Projects_projectLiveLink_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Parameters.AddWithValue("defaultId", defaultId);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
@@ -276,7 +296,7 @@ namespace DataAccess.DbGateways
             return list;
         }
 
-        public List<SingleLargeTextModel> getProjectSourceLinkByUserId(int userid)
+        public List<SingleLargeTextModel> getProjectSourceLinkByUserId(int userid, int defaultId)
         {
             List<SingleLargeTextModel> list = new List<SingleLargeTextModel>();
             using (SqlConnection aSqlConnection
@@ -286,6 +306,8 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "get_Projects_projectSourceLink_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Parameters.AddWithValue("defaultId", defaultId);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
@@ -303,7 +325,7 @@ namespace DataAccess.DbGateways
             return list;
         }
 
-        public List<SingleDateModel> getDateCreatedByUserId(int userid)
+        public List<SingleDateModel> getDateCreatedByUserId(int userid, int defaultId)
         {
             List<SingleDateModel> list = new List<SingleDateModel>();
             using (SqlConnection aSqlConnection
@@ -313,6 +335,8 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "get_Projects_dateCreated_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Parameters.AddWithValue("defaultId", defaultId);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
@@ -331,7 +355,7 @@ namespace DataAccess.DbGateways
         }
 
 
-        public List<SingleLargeTextModel> getOneSingleBriefForWholeProjectByUserId(int userid)
+        public List<SingleLargeTextModel> getOneSingleBriefForWholeProjectByUserId(int userid, int defaultId)
         {
             List<SingleLargeTextModel> list = new List<SingleLargeTextModel>();
             using (SqlConnection aSqlConnection
@@ -341,6 +365,8 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "get_Projects_oneSingleBriefForWholeProject_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Parameters.AddWithValue("defaultId", defaultId);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();

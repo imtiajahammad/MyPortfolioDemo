@@ -10,7 +10,7 @@ namespace DataAccess.DbGateways
 {
     public class ContactGeteway
     {
-        public List<SingleSmallTextModel> getNameByUserId(int userid)
+        public List<SingleSmallTextModel> getNameByUserId(int userid, int defaultId)
         {
             List<SingleSmallTextModel> list = new List<SingleSmallTextModel>();
             using (SqlConnection aSqlConnection
@@ -20,7 +20,8 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "get_Contacts_name_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("userid", userid);
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Parameters.AddWithValue("defaultId", defaultId);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
@@ -37,7 +38,7 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
-        public List<SingleSmallTextModel> getEmailByUserId(int userid)
+        public List<SingleSmallTextModel> getEmailByUserId(int userid, int defaultId)
         {
             List<SingleSmallTextModel> list = new List<SingleSmallTextModel>();
             using (SqlConnection aSqlConnection
@@ -47,7 +48,8 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "get_Contacts_email_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("userid", userid);
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Parameters.AddWithValue("defaultId", defaultId);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
@@ -65,7 +67,7 @@ namespace DataAccess.DbGateways
             return list;
         }
 
-        public List<SingleLargeTextModel> getMessageByUserId(int userid)
+        public List<SingleLargeTextModel> getMessageByUserId(int userid, int defaultId)
         {
             List<SingleLargeTextModel> list = new List<SingleLargeTextModel>();
             using (SqlConnection aSqlConnection
@@ -75,7 +77,8 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "get_Contacts_message_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("userid", userid);
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Parameters.AddWithValue("defaultId", defaultId);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();

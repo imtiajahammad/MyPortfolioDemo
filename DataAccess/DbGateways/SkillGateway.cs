@@ -10,7 +10,7 @@ namespace DataAccess.DbGateways
 {
     public class SkillGateway
     {
-        public List<SingleSmallTextModel> getTopicNameByUserId(int userid)
+        public List<SingleSmallTextModel> getTopicNameByUserId(int userid, int defaultId)
         {
             List<SingleSmallTextModel> list = new List<SingleSmallTextModel>();
             using (SqlConnection aSqlConnection
@@ -20,6 +20,8 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "get_skills_topicName_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Parameters.AddWithValue("defaultId", defaultId);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
@@ -37,7 +39,7 @@ namespace DataAccess.DbGateways
             return list;
         }
 
-        public List<SmallTextListDataModel> getSubTopicNameByUserId(int userid)
+        public List<SmallTextListDataModel> getSubTopicNameByUserId(int userid, int defaultId)
         {
             List<SmallTextListDataModel> list = new List<SmallTextListDataModel>();
             using (SqlConnection aSqlConnection
@@ -47,6 +49,8 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "get_skills_subTopicName_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Parameters.AddWithValue("defaultId", defaultId);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
@@ -64,7 +68,7 @@ namespace DataAccess.DbGateways
             return list;
         }
 
-        public List<SingleIntegerModel> getEndDateByUserId(int userid)
+        public List<SingleIntegerModel> getEndDateByUserId(int userid, int defaultId)
         {
             List<SingleIntegerModel> list = new List<SingleIntegerModel>();
             using (SqlConnection aSqlConnection
@@ -74,6 +78,8 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "get_skills_subTopicName_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Parameters.AddWithValue("defaultId", defaultId);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();

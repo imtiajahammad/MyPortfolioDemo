@@ -10,7 +10,7 @@ namespace DataAccess.DbGateways
 {
     public class CareerAdjectiveGateway
     {
-        public List<SmallTextListDataModel> getPersonalQualitiesByUserId(int userid)
+        public List<SmallTextListDataModel> getPersonalQualitiesByUserId(int userid, int defaultId)
         {
             List<SmallTextListDataModel> list = new List<SmallTextListDataModel>();
             using (SqlConnection aSqlConnection
@@ -20,6 +20,8 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "get_CareerAdjective_personalQuality_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Parameters.AddWithValue("defaultId", defaultId);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
@@ -36,7 +38,7 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
-        public List<SmallTextListDataModel> getSkillsByTopicByUserId(int userid)
+        public List<SmallTextListDataModel> getSkillsByTopicByUserId(int userid, int defaultId)
         {
             List<SmallTextListDataModel> list = new List<SmallTextListDataModel>();
             using (SqlConnection aSqlConnection
@@ -46,6 +48,8 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "get_CareerAdjective_skillsByTopic_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Parameters.AddWithValue("defaultId", defaultId);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
@@ -62,7 +66,7 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
-        public List<LargeTextListDataModel> getBriefAboutMeByUserId(int userid)
+        public List<LargeTextListDataModel> getBriefAboutMeByUserId(int userid, int defaultId)
         {
             List<LargeTextListDataModel> list = new List<LargeTextListDataModel>();
             using (SqlConnection aSqlConnection
@@ -72,6 +76,8 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "get_CareerAdjective_briefAboutMe_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Parameters.AddWithValue("defaultId", defaultId);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
@@ -88,7 +94,7 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
-        public List<SmallTextListDataModel> getMyWorkFeaturesByUserId(int userid)
+        public List<SmallTextListDataModel> getMyWorkFeaturesByUserId(int userid, int defaultId)
         {
             List<SmallTextListDataModel> list = new List<SmallTextListDataModel>();
             using (SqlConnection aSqlConnection
@@ -98,6 +104,8 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "get_CareerAdjective_myWorkFeatures_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Parameters.AddWithValue("defaultId", defaultId);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
@@ -114,7 +122,7 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
-        public List<SmallTextListDataModel> getCurrentFocusByUserId(int userid)
+        public List<SmallTextListDataModel> getCurrentFocusByUserId(int userid, int defaultId)
         {
             List<SmallTextListDataModel> list = new List<SmallTextListDataModel>();
             using (SqlConnection aSqlConnection
@@ -124,6 +132,8 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "get_CareerAdjective_currentFocus_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Parameters.AddWithValue("defaultId", defaultId);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
@@ -142,7 +152,7 @@ namespace DataAccess.DbGateways
         }
 
 
-        public List<SingleLargeTextModel> getOnlineResumeLinkByUserId(int userid)
+        public List<SingleLargeTextModel> getOnlineResumeLinkByUserId(int userid, int defaultId)
         {
             List<SingleLargeTextModel> list = new List<SingleLargeTextModel>();
             using (SqlConnection aSqlConnection
@@ -152,6 +162,8 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "get_CareerAdjective_onlineResumeLink_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Parameters.AddWithValue("defaultId", defaultId);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
@@ -168,7 +180,7 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
-        public List<LargeTextListDataModel> getDetailsListByUserId(int userid)
+        public List<LargeTextListDataModel> getDetailsListByUserId(int userid, int defaultId)
         {
             List<LargeTextListDataModel> list = new List<LargeTextListDataModel>();
             using (SqlConnection aSqlConnection
@@ -178,6 +190,8 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "get_CareerAdjective_detailsList_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Parameters.AddWithValue("defaultId", defaultId);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
