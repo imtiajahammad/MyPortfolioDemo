@@ -20,6 +20,7 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "get_Contacts_name_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userid", userid);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
@@ -46,6 +47,7 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "get_Contacts_email_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userid", userid);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
@@ -73,6 +75,7 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "get_Contacts_message_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userid", userid);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
@@ -85,6 +88,34 @@ namespace DataAccess.DbGateways
                         aSingleLargeTextModel.Description = aSqlDataReader["description"].ToString();
                     }
                     list.Add(aSingleLargeTextModel);
+                }
+            }
+            return list;
+        }
+
+        public List<ContactModel> Get_CareerAdjectiveDefault_ByUserId(int userid)
+        {
+            List<ContactModel> list = new List<ContactModel>();
+            using (SqlConnection aSqlConnection
+                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "get_ContactsDefault_ByUserId";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userid", userid);
+                    cmd.Connection = aSqlConnection;
+                    aSqlConnection.Open();
+                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();
+                    ContactModel aContactModel = new ContactModel();
+                    while (aSqlDataReader.Read())
+                    {
+                        aContactModel.id = Convert.ToInt32(aSqlDataReader["id"].ToString());
+                        aContactModel.nameId = Convert.ToInt32(aSqlDataReader["nameId"].ToString());
+                        aContactModel.emailId = Convert.ToInt32(aSqlDataReader["emailId"].ToString());
+                        aContactModel.messageId = Convert.ToInt32(aSqlDataReader["messageId"].ToString());                        
+                    }
+                    list.Add(aContactModel);
                 }
             }
             return list;

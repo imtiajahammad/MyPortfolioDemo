@@ -194,5 +194,37 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
+
+        public List<CareerAdjectiveModel> Get_CareerAdjectiveDefault_ByUserId(int userid)
+        {
+            List<CareerAdjectiveModel> list = new List<CareerAdjectiveModel>();
+            using (SqlConnection aSqlConnection
+                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "get_CareerAdjectiveDefault_ByUserId";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userid", userid);
+                    cmd.Connection = aSqlConnection;
+                    aSqlConnection.Open();
+                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();
+                    CareerAdjectiveModel aCareerAdjectiveModel = new CareerAdjectiveModel();
+                    while (aSqlDataReader.Read())
+                    {
+                        aCareerAdjectiveModel.id = Convert.ToInt32(aSqlDataReader["id"].ToString());
+                        aCareerAdjectiveModel.personalQualityId = Convert.ToInt32(aSqlDataReader["personalQualityId"].ToString());
+                        aCareerAdjectiveModel.skillsByTopicId = Convert.ToInt32(aSqlDataReader["skillsByTopicId"].ToString());
+                        aCareerAdjectiveModel.briefAboutMeId = Convert.ToInt32(aSqlDataReader["briefAboutMeId"].ToString());
+                        aCareerAdjectiveModel.myWorkFeatureId = Convert.ToInt32(aSqlDataReader["myWorkFeatureId"].ToString());
+                        aCareerAdjectiveModel.currentFocusId = Convert.ToInt32(aSqlDataReader["currentFocusId"].ToString());
+                        aCareerAdjectiveModel.onlineResumeLinkId = Convert.ToInt32(aSqlDataReader["onlineResumeLinkId"].ToString());
+                        aCareerAdjectiveModel.detailsListId = Convert.ToInt32(aSqlDataReader["detailsListId"].ToString());
+                    }
+                    list.Add(aCareerAdjectiveModel);
+                }
+            }
+            return list;
+        }
     }
 }

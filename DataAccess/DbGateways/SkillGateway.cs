@@ -90,5 +90,34 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
+
+        
+        public List<SkillModel> Get_SkillsDefault_ByUserId(int userid)
+        {
+            List<SkillModel> list = new List<SkillModel>();
+            using (SqlConnection aSqlConnection
+                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "get_SkillsDefault_ByUserId";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userid", userid);
+                    cmd.Connection = aSqlConnection;
+                    aSqlConnection.Open();
+                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();
+                    SkillModel aSkillModel = new SkillModel();
+                    while (aSqlDataReader.Read())
+                    {
+                        aSkillModel.id = Convert.ToInt32(aSqlDataReader["id"].ToString());
+                        aSkillModel.topicNameId = Convert.ToInt32(aSqlDataReader["topicNameId"].ToString());
+                        aSkillModel.subTopicNameId = Convert.ToInt32(aSqlDataReader["subTopicNameId"].ToString());
+                        aSkillModel.percentageId = Convert.ToInt32(aSqlDataReader["percentageId"].ToString());                        
+                    }
+                    list.Add(aSkillModel);
+                }
+            }
+            return list;
+        }
     }
 }

@@ -249,6 +249,38 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
-
+        public List<ExperienceModel> Get_ExperiencesDefault_ByUserId(int userid)
+        {
+            List<ExperienceModel> list = new List<ExperienceModel>();
+            using (SqlConnection aSqlConnection
+                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "get_ExperiencesDefault_ByUserId";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userid", userid);
+                    cmd.Connection = aSqlConnection;
+                    aSqlConnection.Open();
+                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();
+                    ExperienceModel aExperienceModel = new ExperienceModel();
+                    while (aSqlDataReader.Read())
+                    {
+                        aExperienceModel.id = Convert.ToInt32(aSqlDataReader["id"].ToString());
+                        aExperienceModel.companyNameId = Convert.ToInt32(aSqlDataReader["companyNameId"].ToString());
+                        aExperienceModel.yourRoleId = Convert.ToInt32(aSqlDataReader["yourRoleId"].ToString());
+                        aExperienceModel.responsibilityBriefId = Convert.ToInt32(aSqlDataReader["responsibilityBriefId"].ToString());
+                        aExperienceModel.responsibilitiesPointId = Convert.ToInt32(aSqlDataReader["responsibilitiesPointId"].ToString());
+                        aExperienceModel.accomplishmentsPointId = Convert.ToInt32(aSqlDataReader["accomplishmentsPointId"].ToString());
+                        aExperienceModel.workLocationId = Convert.ToInt32(aSqlDataReader["workLocationId"].ToString());
+                        aExperienceModel.startDateId = Convert.ToInt32(aSqlDataReader["startDateId"].ToString());
+                        aExperienceModel.endDateId = Convert.ToInt32(aSqlDataReader["endDateId"].ToString());
+                        aExperienceModel.companyLinkId = Convert.ToInt32(aSqlDataReader["companyLinkId"].ToString());
+                    }
+                    list.Add(aExperienceModel);
+                }
+            }
+            return list;
+        }
     }
 }

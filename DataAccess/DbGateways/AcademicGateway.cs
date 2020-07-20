@@ -198,5 +198,38 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
+        
+
+        public List<AcademicModel> Get_AcademicsDefault_ByUserId(int userid)
+        {
+            List<AcademicModel> list = new List<AcademicModel>();
+            using (SqlConnection aSqlConnection
+                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "get_AcademicsDefault_ByUserId";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userid", userid);
+                    cmd.Connection = aSqlConnection;
+                    aSqlConnection.Open();
+                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();
+                    AcademicModel aAcademicModel = new AcademicModel();
+                    while (aSqlDataReader.Read())
+                    {
+                        aAcademicModel.id = Convert.ToInt32(aSqlDataReader["id"].ToString());
+                        aAcademicModel.institutionNameId = Convert.ToInt32(aSqlDataReader["institutionNameId"].ToString());
+                        aAcademicModel.locationId = Convert.ToInt32(aSqlDataReader["locationId"].ToString());
+                        aAcademicModel.courseNameId = Convert.ToInt32(aSqlDataReader["courseNameId"].ToString());
+                        aAcademicModel.cgpaId = Convert.ToInt32(aSqlDataReader["cgpaId"].ToString());
+                        aAcademicModel.startId = Convert.ToInt32(aSqlDataReader["startId"].ToString());
+                        aAcademicModel.endId = Convert.ToInt32(aSqlDataReader["endId"].ToString());
+                        aAcademicModel.briefId = Convert.ToInt32(aSqlDataReader["briefId"].ToString());
+                    }
+                    list.Add(aAcademicModel);
+                }
+            }
+            return list;
+        }
     }
 }

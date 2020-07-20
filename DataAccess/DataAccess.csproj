@@ -80,12 +80,21 @@
     <Compile Include="DbGateways\ImageGateway.cs" />
     <Compile Include="DbGateways\ProjectGateway.cs" />
     <Compile Include="DbGateways\SkillGateway.cs" />
+    <Compile Include="Models\AboutModel.cs" />
+    <Compile Include="Models\AcademicModel.cs" />
+    <Compile Include="Models\BlogModel.cs" />
+    <Compile Include="Models\CareerAdjectiveModel.cs" />
+    <Compile Include="Models\ContactModel.cs" />
+    <Compile Include="Models\ExperienceModel.cs" />
     <Compile Include="Models\LargeTextListDataModel.cs" />
     <Compile Include="Models\OnlineLinkDataModel.cs" />
+    <Compile Include="Models\ProjectModel.cs" />
+    <Compile Include="Models\SelfImageModel.cs" />
     <Compile Include="Models\SingleDateModel.cs" />
     <Compile Include="Models\SingleIntegerModel.cs" />
     <Compile Include="Models\SingleLargeTextModel.cs" />
     <Compile Include="Models\SingleSmallTextModel.cs" />
+    <Compile Include="Models\SkillModel.cs" />
     <Compile Include="Models\SmallTextListDataModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

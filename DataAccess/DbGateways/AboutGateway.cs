@@ -88,8 +88,6 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
-
-
         public List<SmallTextListDataModel> getPhoneNumbersByUserId(int userid)
         {
             List<SmallTextListDataModel> list = new List<SmallTextListDataModel>();
@@ -116,7 +114,6 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
-
         public List<LargeTextListDataModel> getBriefByUserId(int userid)
         {
             List<LargeTextListDataModel> list = new List<LargeTextListDataModel>();
@@ -143,7 +140,6 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
-
         public List<SmallTextListDataModel> getLanguagesByUserId(int userid)
         {
             List<SmallTextListDataModel> list = new List<SmallTextListDataModel>();
@@ -170,8 +166,6 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
-
-
         public List<SingleDateModel> getDobByUserId(int userid)
         {
             List<SingleDateModel> list = new List<SingleDateModel>();
@@ -198,8 +192,6 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
-
-
         public List<SingleSmallTextModel> getCountryByUserId(int userid)
         {
             List<SingleSmallTextModel> list = new List<SingleSmallTextModel>();
@@ -226,8 +218,6 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
-
-
         public List<SingleSmallTextModel> getCityByUserId(int userid)
         {
             List<SingleSmallTextModel> list = new List<SingleSmallTextModel>();
@@ -280,7 +270,6 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
-
         public List<OnlineLinkDataModel> getSocialLinksByUserId(int userid)
         {
             List<OnlineLinkDataModel> list = new List<OnlineLinkDataModel>();
@@ -305,6 +294,41 @@ namespace DataAccess.DbGateways
                         aOnlineLinkDataModel.Description = aSqlDataReader["description"].ToString();
                     }
                     list.Add(aOnlineLinkDataModel);
+                }
+            }
+            return list;
+        }
+        public List<AboutModel> Get_AboutDefault_ByUserId(int userid)
+        {
+            List<AboutModel> list = new List<AboutModel>();
+            using (SqlConnection aSqlConnection
+                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "get_AboutDefault_ByUserId";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userid", userid);
+                    cmd.Connection = aSqlConnection;
+                    aSqlConnection.Open();
+                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();
+                    AboutModel aAboutModel = new AboutModel();
+                    while (aSqlDataReader.Read())
+                    {
+                        aAboutModel.id = Convert.ToInt32(aSqlDataReader["id"].ToString());
+                        aAboutModel.firstNameId = Convert.ToInt32(aSqlDataReader["firstNameId"].ToString());
+                        aAboutModel.middleNameId = Convert.ToInt32(aSqlDataReader["middleNameId"].ToString());
+                        aAboutModel.lastNameId = Convert.ToInt32(aSqlDataReader["lastNameId"].ToString());
+                        aAboutModel.phoneNumberId = Convert.ToInt32(aSqlDataReader["phoneNumberId"].ToString());
+                        aAboutModel.briefId = Convert.ToInt32(aSqlDataReader["briefId"].ToString());
+                        aAboutModel.languageId = Convert.ToInt32(aSqlDataReader["languageId"].ToString());
+                        aAboutModel.dobId = Convert.ToInt32(aSqlDataReader["dobId"].ToString());
+                        aAboutModel.countryId = Convert.ToInt32(aSqlDataReader["countryId"].ToString());
+                        aAboutModel.cityId = Convert.ToInt32(aSqlDataReader["cityId"].ToString());
+                        aAboutModel.fullAddressId = Convert.ToInt32(aSqlDataReader["fullAddressId"].ToString());
+                        aAboutModel.socialLinksId = Convert.ToInt32(aSqlDataReader["socialLinksId"].ToString());
+                    }
+                    list.Add(aAboutModel);
                 }
             }
             return list;
