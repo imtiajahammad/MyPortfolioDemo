@@ -18,7 +18,7 @@ namespace DataAccess.DbGateways
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    cmd.CommandText = "get_selfImages_homeImageList_ByUserId";
+                    cmd.CommandText = "get_selfImages_homeImageList";
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("userId", userid);
                     cmd.Parameters.AddWithValue("defaultId", defaultId);
@@ -38,6 +38,36 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
+        /**/
+        public List<SmallTextListDataModel> getHomeImageByUserId(int userid)
+        {
+            List<SmallTextListDataModel> list = new List<SmallTextListDataModel>();
+            using (SqlConnection aSqlConnection
+                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "get_selfImages_homeImageList_ByUserId";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Connection = aSqlConnection;
+                    aSqlConnection.Open();
+                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();
+                    SmallTextListDataModel aSmallTextListDataModel = new SmallTextListDataModel();
+                    while (aSqlDataReader.Read())
+                    {
+                        aSmallTextListDataModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
+                        aSmallTextListDataModel.ParentId = Convert.ToInt32(aSqlDataReader["parentId"].ToString());
+                        aSmallTextListDataModel.Data = aSqlDataReader["data"].ToString();
+                        aSmallTextListDataModel.Description = aSqlDataReader["description"].ToString();
+                    }
+                    list.Add(aSmallTextListDataModel);
+                }
+            }
+            return list;
+        }
+
+
         public List<SelfImageModel> Get_SelfImagesDefault_ByUserId(int userid)
         {
             List<SelfImageModel> list = new List<SelfImageModel>();

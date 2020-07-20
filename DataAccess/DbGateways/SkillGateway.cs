@@ -18,7 +18,7 @@ namespace DataAccess.DbGateways
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    cmd.CommandText = "get_skills_topicName_ByUserId";
+                    cmd.CommandText = "get_skills_topicName";
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("userId", userid);
                     cmd.Parameters.AddWithValue("defaultId", defaultId);
@@ -38,7 +38,6 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
-
         public List<SmallTextListDataModel> getSubTopicNameByUserId(int userid, int defaultId)
         {
             List<SmallTextListDataModel> list = new List<SmallTextListDataModel>();
@@ -47,7 +46,7 @@ namespace DataAccess.DbGateways
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    cmd.CommandText = "get_skills_subTopicName_ByUserId";
+                    cmd.CommandText = "get_skills_subTopicName";
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("userId", userid);
                     cmd.Parameters.AddWithValue("defaultId", defaultId);
@@ -67,8 +66,90 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
-
         public List<SingleIntegerModel> getEndDateByUserId(int userid, int defaultId)
+        {
+            List<SingleIntegerModel> list = new List<SingleIntegerModel>();
+            using (SqlConnection aSqlConnection
+                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "get_skills_subTopicName";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Parameters.AddWithValue("defaultId", defaultId);
+                    cmd.Connection = aSqlConnection;
+                    aSqlConnection.Open();
+                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();
+                    SingleIntegerModel aSingleIntegerModel = new SingleIntegerModel();
+                    while (aSqlDataReader.Read())
+                    {
+                        aSingleIntegerModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
+                        aSingleIntegerModel.RepositorychildId = Convert.ToInt32(aSqlDataReader["repositorychildId"].ToString());
+                        aSingleIntegerModel.Data = Convert.ToInt32(aSqlDataReader["data"].ToString());
+                        aSingleIntegerModel.Description = aSqlDataReader["description"].ToString();
+                    }
+                    list.Add(aSingleIntegerModel);
+                }
+            }
+            return list;
+        }
+        /**/
+        public List<SingleSmallTextModel> getTopicNameByUserId(int userid)
+        {
+            List<SingleSmallTextModel> list = new List<SingleSmallTextModel>();
+            using (SqlConnection aSqlConnection
+                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "get_skills_topicName_ByUserId";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Connection = aSqlConnection;
+                    aSqlConnection.Open();
+                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();
+                    SingleSmallTextModel aSingleSmallTextModel = new SingleSmallTextModel();
+                    while (aSqlDataReader.Read())
+                    {
+                        aSingleSmallTextModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
+                        aSingleSmallTextModel.RepositorychildId = Convert.ToInt32(aSqlDataReader["repositorychildId"].ToString());
+                        aSingleSmallTextModel.Data = aSqlDataReader["data"].ToString();
+                        aSingleSmallTextModel.Description = aSqlDataReader["description"].ToString();
+                    }
+                    list.Add(aSingleSmallTextModel);
+                }
+            }
+            return list;
+        }
+        public List<SmallTextListDataModel> getSubTopicNameByUserId(int userid)
+        {
+            List<SmallTextListDataModel> list = new List<SmallTextListDataModel>();
+            using (SqlConnection aSqlConnection
+                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "get_skills_subTopicName_ByUserId";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Connection = aSqlConnection;
+                    aSqlConnection.Open();
+                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();
+                    SmallTextListDataModel aSmallTextListDataModel = new SmallTextListDataModel();
+                    while (aSqlDataReader.Read())
+                    {
+                        aSmallTextListDataModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
+                        aSmallTextListDataModel.ParentId = Convert.ToInt32(aSqlDataReader["parentId"].ToString());
+                        aSmallTextListDataModel.Data = aSqlDataReader["data"].ToString();
+                        aSmallTextListDataModel.Description = aSqlDataReader["description"].ToString();
+                    }
+                    list.Add(aSmallTextListDataModel);
+                }
+            }
+            return list;
+        }
+        public List<SingleIntegerModel> getEndDateByUserId(int userid)
         {
             List<SingleIntegerModel> list = new List<SingleIntegerModel>();
             using (SqlConnection aSqlConnection
@@ -79,7 +160,6 @@ namespace DataAccess.DbGateways
                     cmd.CommandText = "get_skills_subTopicName_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("userId", userid);
-                    cmd.Parameters.AddWithValue("defaultId", defaultId);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();

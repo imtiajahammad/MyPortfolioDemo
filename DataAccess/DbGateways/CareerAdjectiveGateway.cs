@@ -18,7 +18,7 @@ namespace DataAccess.DbGateways
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    cmd.CommandText = "get_CareerAdjective_personalQuality_ByUserId";
+                    cmd.CommandText = "get_CareerAdjective_personalQuality";
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("userId", userid);
                     cmd.Parameters.AddWithValue("defaultId", defaultId);
@@ -46,7 +46,7 @@ namespace DataAccess.DbGateways
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    cmd.CommandText = "get_CareerAdjective_skillsByTopic_ByUserId";
+                    cmd.CommandText = "get_CareerAdjective_skillsByTopic";
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("userId", userid);
                     cmd.Parameters.AddWithValue("defaultId", defaultId);
@@ -74,7 +74,7 @@ namespace DataAccess.DbGateways
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    cmd.CommandText = "get_CareerAdjective_briefAboutMe_ByUserId";
+                    cmd.CommandText = "get_CareerAdjective_briefAboutMe";
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("userId", userid);
                     cmd.Parameters.AddWithValue("defaultId", defaultId);
@@ -102,7 +102,7 @@ namespace DataAccess.DbGateways
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    cmd.CommandText = "get_CareerAdjective_myWorkFeatures_ByUserId";
+                    cmd.CommandText = "get_CareerAdjective_myWorkFeatures";
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("userId", userid);
                     cmd.Parameters.AddWithValue("defaultId", defaultId);
@@ -130,7 +130,7 @@ namespace DataAccess.DbGateways
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    cmd.CommandText = "get_CareerAdjective_currentFocus_ByUserId";
+                    cmd.CommandText = "get_CareerAdjective_currentFocus";
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("userId", userid);
                     cmd.Parameters.AddWithValue("defaultId", defaultId);
@@ -150,8 +150,6 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
-
-
         public List<SingleLargeTextModel> getOnlineResumeLinkByUserId(int userid, int defaultId)
         {
             List<SingleLargeTextModel> list = new List<SingleLargeTextModel>();
@@ -160,7 +158,7 @@ namespace DataAccess.DbGateways
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    cmd.CommandText = "get_CareerAdjective_onlineResumeLink_ByUserId";
+                    cmd.CommandText = "get_CareerAdjective_onlineResumeLink";
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("userId", userid);
                     cmd.Parameters.AddWithValue("defaultId", defaultId);
@@ -188,10 +186,200 @@ namespace DataAccess.DbGateways
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    cmd.CommandText = "get_CareerAdjective_detailsList_ByUserId";
+                    cmd.CommandText = "get_CareerAdjective_detailsList";
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("userId", userid);
                     cmd.Parameters.AddWithValue("defaultId", defaultId);
+                    cmd.Connection = aSqlConnection;
+                    aSqlConnection.Open();
+                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();
+                    LargeTextListDataModel aLargeTextListDataModel = new LargeTextListDataModel();
+                    while (aSqlDataReader.Read())
+                    {
+                        aLargeTextListDataModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
+                        aLargeTextListDataModel.ParentId = Convert.ToInt32(aSqlDataReader["parentId"].ToString());
+                        aLargeTextListDataModel.Data = aSqlDataReader["data"].ToString();
+                        aLargeTextListDataModel.Description = aSqlDataReader["description"].ToString();
+                    }
+                    list.Add(aLargeTextListDataModel);
+                }
+            }
+            return list;
+        }
+        /**/
+        public List<SmallTextListDataModel> getPersonalQualitiesByUserId(int userid)
+        {
+            List<SmallTextListDataModel> list = new List<SmallTextListDataModel>();
+            using (SqlConnection aSqlConnection
+                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "get_CareerAdjective_personalQuality_ByUserId";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Connection = aSqlConnection;
+                    aSqlConnection.Open();
+                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();
+                    SmallTextListDataModel aSmallTextListDataModel = new SmallTextListDataModel();
+                    while (aSqlDataReader.Read())
+                    {
+                        aSmallTextListDataModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
+                        aSmallTextListDataModel.ParentId = Convert.ToInt32(aSqlDataReader["parentId"].ToString());
+                        aSmallTextListDataModel.Data = aSqlDataReader["data"].ToString();
+                        aSmallTextListDataModel.Description = aSqlDataReader["description"].ToString();
+                    }
+                    list.Add(aSmallTextListDataModel);
+                }
+            }
+            return list;
+        }
+        public List<SmallTextListDataModel> getSkillsByTopicByUserId(int userid)
+        {
+            List<SmallTextListDataModel> list = new List<SmallTextListDataModel>();
+            using (SqlConnection aSqlConnection
+                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "get_CareerAdjective_skillsByTopic_ByUserId";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Connection = aSqlConnection;
+                    aSqlConnection.Open();
+                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();
+                    SmallTextListDataModel aSmallTextListDataModel = new SmallTextListDataModel();
+                    while (aSqlDataReader.Read())
+                    {
+                        aSmallTextListDataModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
+                        aSmallTextListDataModel.ParentId = Convert.ToInt32(aSqlDataReader["parentId"].ToString());
+                        aSmallTextListDataModel.Data = aSqlDataReader["data"].ToString();
+                        aSmallTextListDataModel.Description = aSqlDataReader["description"].ToString();
+                    }
+                    list.Add(aSmallTextListDataModel);
+                }
+            }
+            return list;
+        }
+        public List<LargeTextListDataModel> getBriefAboutMeByUserId(int userid)
+        {
+            List<LargeTextListDataModel> list = new List<LargeTextListDataModel>();
+            using (SqlConnection aSqlConnection
+                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "get_CareerAdjective_briefAboutMe_ByUserId";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Connection = aSqlConnection;
+                    aSqlConnection.Open();
+                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();
+                    LargeTextListDataModel aLargeTextListDataModel = new LargeTextListDataModel();
+                    while (aSqlDataReader.Read())
+                    {
+                        aLargeTextListDataModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
+                        aLargeTextListDataModel.ParentId = Convert.ToInt32(aSqlDataReader["parentId"].ToString());
+                        aLargeTextListDataModel.Data = aSqlDataReader["data"].ToString();
+                        aLargeTextListDataModel.Description = aSqlDataReader["description"].ToString();
+                    }
+                    list.Add(aLargeTextListDataModel);
+                }
+            }
+            return list;
+        }
+        public List<SmallTextListDataModel> getMyWorkFeaturesByUserId(int userid)
+        {
+            List<SmallTextListDataModel> list = new List<SmallTextListDataModel>();
+            using (SqlConnection aSqlConnection
+                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "get_CareerAdjective_myWorkFeatures_ByUserId";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Connection = aSqlConnection;
+                    aSqlConnection.Open();
+                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();
+                    SmallTextListDataModel aSmallTextListDataModel = new SmallTextListDataModel();
+                    while (aSqlDataReader.Read())
+                    {
+                        aSmallTextListDataModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
+                        aSmallTextListDataModel.ParentId = Convert.ToInt32(aSqlDataReader["parentId"].ToString());
+                        aSmallTextListDataModel.Data = aSqlDataReader["data"].ToString();
+                        aSmallTextListDataModel.Description = aSqlDataReader["description"].ToString();
+                    }
+                    list.Add(aSmallTextListDataModel);
+                }
+            }
+            return list;
+        }
+        public List<SmallTextListDataModel> getCurrentFocusByUserId(int userid)
+        {
+            List<SmallTextListDataModel> list = new List<SmallTextListDataModel>();
+            using (SqlConnection aSqlConnection
+                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "get_CareerAdjective_currentFocus_ByUserId";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Connection = aSqlConnection;
+                    aSqlConnection.Open();
+                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();
+                    SmallTextListDataModel aSmallTextListDataModel = new SmallTextListDataModel();
+                    while (aSqlDataReader.Read())
+                    {
+                        aSmallTextListDataModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
+                        aSmallTextListDataModel.ParentId = Convert.ToInt32(aSqlDataReader["parentId"].ToString());
+                        aSmallTextListDataModel.Data = aSqlDataReader["data"].ToString();
+                        aSmallTextListDataModel.Description = aSqlDataReader["description"].ToString();
+                    }
+                    list.Add(aSmallTextListDataModel);
+                }
+            }
+            return list;
+        }
+        public List<SingleLargeTextModel> getOnlineResumeLinkByUserId(int userid)
+        {
+            List<SingleLargeTextModel> list = new List<SingleLargeTextModel>();
+            using (SqlConnection aSqlConnection
+                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "get_CareerAdjective_onlineResumeLink_ByUserId";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Connection = aSqlConnection;
+                    aSqlConnection.Open();
+                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();
+                    SingleLargeTextModel aSingleLargeTextModel = new SingleLargeTextModel();
+                    while (aSqlDataReader.Read())
+                    {
+                        aSingleLargeTextModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
+                        aSingleLargeTextModel.RepositorychildId = Convert.ToInt32(aSqlDataReader["repositorychildId"].ToString());
+                        aSingleLargeTextModel.Data = aSqlDataReader["data"].ToString();
+                        aSingleLargeTextModel.Description = aSqlDataReader["description"].ToString();
+                    }
+                    list.Add(aSingleLargeTextModel);
+                }
+            }
+            return list;
+        }
+        public List<LargeTextListDataModel> getDetailsListByUserId(int userid)
+        {
+            List<LargeTextListDataModel> list = new List<LargeTextListDataModel>();
+            using (SqlConnection aSqlConnection
+                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "get_CareerAdjective_detailsList_ByUserId";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
