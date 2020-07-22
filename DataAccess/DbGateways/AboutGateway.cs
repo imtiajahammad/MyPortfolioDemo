@@ -909,7 +909,7 @@ namespace DataAccess.DbGateways
             }
             return list;
         }*/
-        public List<SingleLargeTextModel> getFullAddressByUserId(int userid)
+        public SingleLargeTextModel getFullAddressByUserId(int userid)
         {
             SingleLargeTextModel aSingleLargeTextModel = new SingleLargeTextModel();
             using (SqlConnection aSqlConnection

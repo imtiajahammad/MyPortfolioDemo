@@ -18,7 +18,7 @@ namespace DataAccess.Models
         public SingleSmallTextModel country { get; set; }
         public SingleSmallTextModel city { get; set; }
         public SingleLargeTextModel fullAddress { get; set; }
-        public OnlineLinkDataModel socialLinks { get; set; }
+        public List<OnlineLinkDataModel> socialLinks { get; set; }
 
     }
 }
