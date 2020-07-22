@@ -427,26 +427,21 @@ namespace DataAccess.DbGateways
         }
 
 
-        public List<AcademicProfileModel> Get_AboutProfile_ByUserId(List<AcademicModel> aboutids, int userid)
+        public List<AcademicProfileModel> Get_AcademicProfile_ByUserId(List<AcademicModel> academicids, int userid)
         {
-            List<AboutProfileModel> list = new List<AboutProfileModel>();
+            List<AcademicProfileModel> list = new List<AcademicProfileModel>();
             foreach (AcademicModel aAcademicModel in academicids)
             {
-                AcademicProfileModel aAboutProfileModel = new AcademicProfileModel();
-                aAboutProfileModel.id = aAboutModel.id;
-                aAboutProfileModel.FirstName = getFirstNameByUserId(userid, aAboutModel.firstNameId);
-                aAboutProfileModel.MiddleName = getMiddleNameByUserId(userid, aAboutModel.middleNameId);
-                aAboutProfileModel.LastName = getLastNameByUserId(userid, aAboutModel.lastNameId);
-                aAboutProfileModel.phoneNumbers = getPhoneNumbersByUserId(userid, aAboutModel.phoneNumberId);
-                aAboutProfileModel.brief = getBriefByUserId(userid, aAboutModel.briefId);
-                aAboutProfileModel.languages = getLanguagesByUserId(userid, aAboutModel.languageId);
-                aAboutProfileModel.DOB = getDobByUserId(userid, aAboutModel.dobId);
-
-                aAboutProfileModel.country = getCountryByUserId(userid, aAboutModel.countryId);
-                aAboutProfileModel.city = getCityByUserId(userid, aAboutModel.cityId);
-                aAboutProfileModel.fullAddress = getFullAddressByUserId(userid, aAboutModel.fullAddressId);
-                aAboutProfileModel.socialLinks = getSocialLinksByUserId(userid, aAboutModel.socialLinksId);
-                list.Add(aAboutProfileModel);
+                AcademicProfileModel aAcademicProfileModel = new AcademicProfileModel();
+                aAcademicProfileModel.id = aAcademicModel.id;
+                aAcademicProfileModel.institutionName = getInstitutionNameByUserId(userid, aAcademicModel.institutionNameId);
+                aAcademicProfileModel.location= getLocationByUserId(userid, aAcademicModel.locationId);
+                aAcademicProfileModel.courseName= getCourseNameByUserId(userid, aAcademicModel.courseNameId);
+                aAcademicProfileModel.cgpa= getCgpaByUserId(userid, aAcademicModel.cgpaId);
+                aAcademicProfileModel.start= getStartByUserId(userid, aAcademicModel.startId);
+                aAcademicProfileModel.end= getEndByUserId(userid, aAcademicModel.endId);
+                aAcademicProfileModel.briefPoint= getBriefPointByUserId(userid, aAcademicModel.briefId);
+                list.Add(aAcademicProfileModel);
             }
             return list;
         }

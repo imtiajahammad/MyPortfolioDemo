@@ -14,6 +14,6 @@ namespace DataAccess.Models
         public SingleSmallTextModel cgpa { get; set; }
         public SingleDateModel start { get; set; }
         public SingleDateModel end { get; set; }
-        public LargeTextListDataModel briefPoint { get; set; }
+        public List<LargeTextListDataModel> briefPoint { get; set; }
     }
 }
