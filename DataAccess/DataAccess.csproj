@@ -86,7 +86,9 @@
     <Compile Include="Models\AcademicProfileModel.cs" />
     <Compile Include="Models\BlogModel.cs" />
     <Compile Include="Models\CareerAdjectiveModel.cs" />
+    <Compile Include="Models\CareerAdjectiveProfileModel.cs" />
     <Compile Include="Models\ContactModel.cs" />
+    <Compile Include="Models\ContactProfileModel.cs" />
     <Compile Include="Models\ExperienceModel.cs" />
     <Compile Include="Models\LargeTextListDataModel.cs" />
     <Compile Include="Models\OnlineLinkDataModel.cs" />
