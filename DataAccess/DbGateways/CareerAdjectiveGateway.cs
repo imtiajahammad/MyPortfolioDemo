@@ -150,9 +150,9 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
-        public List<SingleLargeTextModel> getOnlineResumeLinkByUserId(int userid, int defaultId)
+        public SingleLargeTextModel getOnlineResumeLinkByUserId(int userid, int defaultId)
         {
-            List<SingleLargeTextModel> list = new List<SingleLargeTextModel>();
+            SingleLargeTextModel aSingleLargeTextModel = new SingleLargeTextModel();
             using (SqlConnection aSqlConnection
                 = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
@@ -165,18 +165,17 @@ namespace DataAccess.DbGateways
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
-                    SingleLargeTextModel aSingleLargeTextModel = new SingleLargeTextModel();
+                    
                     while (aSqlDataReader.Read())
                     {
                         aSingleLargeTextModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
                         aSingleLargeTextModel.RepositorychildId = Convert.ToInt32(aSqlDataReader["repositorychildId"].ToString());
                         aSingleLargeTextModel.Data = aSqlDataReader["data"].ToString();
                         aSingleLargeTextModel.Description = aSqlDataReader["description"].ToString();
-                    }
-                    list.Add(aSingleLargeTextModel);
+                    }                    
                 }
             }
-            return list;
+            return aSingleLargeTextModel;
         }
         public List<LargeTextListDataModel> getDetailsListByUserId(int userid, int defaultId)
         {
@@ -425,6 +424,25 @@ namespace DataAccess.DbGateways
                     }
                     list.Add(aCareerAdjectiveModel);
                 }
+            }
+            return list;
+        }
+
+        public List<CareerAdjectiveProfileModel> Get_CareerAdjectiveProfile_ByUserId(List<CareerAdjectiveModel> careerAdjectiveids, int userid)
+        {
+            List<CareerAdjectiveProfileModel> list = new List<CareerAdjectiveProfileModel>();
+            foreach (CareerAdjectiveModel aCareerAdjectiveModel in careerAdjectiveids)
+            {
+                CareerAdjectiveProfileModel aCareerAdjectiveProfileModel = new CareerAdjectiveProfileModel();
+                aCareerAdjectiveProfileModel.id = aCareerAdjectiveModel.id;
+                aCareerAdjectiveProfileModel.personalQualities = getPersonalQualitiesByUserId(userid, aCareerAdjectiveModel.personalQualityId);
+                aCareerAdjectiveProfileModel.skillsByTopic = getSkillsByTopicByUserId(userid, aCareerAdjectiveModel.skillsByTopicId);
+                aCareerAdjectiveProfileModel.briefAboutMe = getBriefAboutMeByUserId(userid, aCareerAdjectiveModel.briefAboutMeId);
+                aCareerAdjectiveProfileModel.myWorkFeatures = getMyWorkFeaturesByUserId(userid, aCareerAdjectiveModel.myWorkFeatureId);
+                aCareerAdjectiveProfileModel.currentFocus = getCurrentFocusByUserId(userid, aCareerAdjectiveModel.currentFocusId);
+                aCareerAdjectiveProfileModel.onlineResumeLink = getOnlineResumeLinkByUserId(userid, aCareerAdjectiveModel.onlineResumeLinkId);
+                aCareerAdjectiveProfileModel.detailsList = getDetailsListByUserId(userid, aCareerAdjectiveModel.detailsListId);
+                list.Add(aCareerAdjectiveProfileModel);
             }
             return list;
         }
