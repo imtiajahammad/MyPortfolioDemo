@@ -10,7 +10,33 @@ namespace DataAccess.DbGateways
 {
     public class AboutGateway
     {
-        public List<SingleSmallTextModel> getFirstNameByUserId(int userid,int defaultId)
+        public SingleSmallTextModel getFirstNameByUserId(int userid,int defaultId)
+        {
+            SingleSmallTextModel aSingleSmallTextModel = new SingleSmallTextModel();
+            using (SqlConnection aSqlConnection
+                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "get_About_firstName";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("userId", userid);
+                    cmd.Parameters.AddWithValue("defaultId", defaultId);
+                    cmd.Connection = aSqlConnection;
+                    aSqlConnection.Open();
+                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();                    
+                    while (aSqlDataReader.Read())
+                    {
+                        aSingleSmallTextModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
+                        aSingleSmallTextModel.RepositorychildId = Convert.ToInt32(aSqlDataReader["repositorychildId"].ToString());
+                        aSingleSmallTextModel.Data = aSqlDataReader["data"].ToString();
+                        aSingleSmallTextModel.Description = aSqlDataReader["description"].ToString();
+                    }                    
+                }
+            }
+            return aSingleSmallTextModel;
+        }
+        /*public List<SingleSmallTextModel> getFirstNameByUserId(int userid, int defaultId)
         {
             List<SingleSmallTextModel> list = new List<SingleSmallTextModel>();
             using (SqlConnection aSqlConnection
@@ -37,7 +63,7 @@ namespace DataAccess.DbGateways
                 }
             }
             return list;
-        }
+        }*/
         public List<SingleSmallTextModel> getMiddleNameByUserId(int userid, int defaultId)
         {
             List<SingleSmallTextModel> list = new List<SingleSmallTextModel>();
@@ -167,7 +193,7 @@ namespace DataAccess.DbGateways
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
                     SmallTextListDataModel aSmallTextListDataModel = new SmallTextListDataModel();
                     while (aSqlDataReader.Read())
-                    {
+                    {                  
                         aSmallTextListDataModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
                         aSmallTextListDataModel.ParentId = Convert.ToInt32(aSqlDataReader["parentId"].ToString());
                         aSmallTextListDataModel.Data = aSqlDataReader["data"].ToString();
@@ -308,6 +334,7 @@ namespace DataAccess.DbGateways
                     OnlineLinkDataModel aOnlineLinkDataModel = new OnlineLinkDataModel();
                     while (aSqlDataReader.Read())
                     {
+
                         aOnlineLinkDataModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
                         aOnlineLinkDataModel.ParentId = Convert.ToInt32(aSqlDataReader["parentId"].ToString());
                         aOnlineLinkDataModel.Title = aSqlDataReader["title"].ToString();
@@ -320,7 +347,6 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
-
         /**/
         public List<SingleSmallTextModel> getFirstNameByUserId(int userid)
         {
@@ -621,6 +647,8 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
+
+        /**/
         public List<AboutModel> Get_AboutDefault_ByUserId(int userid)
         {
             List<AboutModel> list = new List<AboutModel>();
@@ -654,6 +682,21 @@ namespace DataAccess.DbGateways
                     list.Add(aAboutModel);
                 }
             }
+            return list;
+        }
+
+        public List<AboutProfileModel> Get_AboutProfile_ByUserId(List<AboutModel> aboutids,int userid)
+        {
+            List<AboutProfileModel> list = new List<AboutProfileModel>();
+            foreach (AboutModel aAboutModel in aboutids)
+            {
+                AboutProfileModel aAboutProfileModel = new AboutProfileModel();
+                aAboutProfileModel.id=aAboutModel.id;
+                aAboutProfileModel.FirstName = getFirstNameByUserId(userid,aAboutModel.firstNameId);
+
+
+            }
+
             return list;
         }
     }
