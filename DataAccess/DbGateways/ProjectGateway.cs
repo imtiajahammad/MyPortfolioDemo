@@ -66,9 +66,9 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
-        public List<SingleSmallTextModel> getProjectNameByUserId(int userid, int defaultId)
+        public SingleSmallTextModel getProjectNameByUserId(int userid, int defaultId)
         {
-            List<SingleSmallTextModel> list = new List<SingleSmallTextModel>();
+            SingleSmallTextModel aSingleSmallTextModel = new SingleSmallTextModel();
             using (SqlConnection aSqlConnection
                 = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
@@ -81,7 +81,7 @@ namespace DataAccess.DbGateways
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
-                    SingleSmallTextModel aSingleSmallTextModel = new SingleSmallTextModel();
+                    
                     while (aSqlDataReader.Read())
                     {
                         aSingleSmallTextModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
@@ -89,14 +89,13 @@ namespace DataAccess.DbGateways
                         aSingleSmallTextModel.Data = aSqlDataReader["data"].ToString();
                         aSingleSmallTextModel.Description = aSqlDataReader["description"].ToString();
                     }
-                    list.Add(aSingleSmallTextModel);
                 }
             }
-            return list;
+            return aSingleSmallTextModel;
         }
-        public List<SingleSmallTextModel> getProjectSubNameByUserId(int userid, int defaultId)
+        public SingleSmallTextModel getProjectSubNameByUserId(int userid, int defaultId)
         {
-            List<SingleSmallTextModel> list = new List<SingleSmallTextModel>();
+            SingleSmallTextModel aSingleSmallTextModel = new SingleSmallTextModel();
             using (SqlConnection aSqlConnection
                 = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
@@ -109,7 +108,6 @@ namespace DataAccess.DbGateways
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
-                    SingleSmallTextModel aSingleSmallTextModel = new SingleSmallTextModel();
                     while (aSqlDataReader.Read())
                     {
                         aSingleSmallTextModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
@@ -117,10 +115,9 @@ namespace DataAccess.DbGateways
                         aSingleSmallTextModel.Data = aSqlDataReader["data"].ToString();
                         aSingleSmallTextModel.Description = aSqlDataReader["description"].ToString();
                     }
-                    list.Add(aSingleSmallTextModel);
                 }
             }
-            return list;
+            return aSingleSmallTextModel;
         }
         public List<LargeTextListDataModel> getProjectBriefByUserId(int userid, int defaultId)
         {
@@ -262,9 +259,9 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
-        public List<SingleLargeTextModel> getProjectLiveLinkByUserId(int userid, int defaultId)
+        public SingleLargeTextModel getProjectLiveLinkByUserId(int userid, int defaultId)
         {
-            List<SingleLargeTextModel> list = new List<SingleLargeTextModel>();
+            SingleLargeTextModel aSingleLargeTextModel = new SingleLargeTextModel();
             using (SqlConnection aSqlConnection
                 = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
@@ -277,7 +274,6 @@ namespace DataAccess.DbGateways
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
-                    SingleLargeTextModel aSingleLargeTextModel = new SingleLargeTextModel();
                     while (aSqlDataReader.Read())
                     {
                         aSingleLargeTextModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
@@ -285,14 +281,13 @@ namespace DataAccess.DbGateways
                         aSingleLargeTextModel.Data = aSqlDataReader["data"].ToString();
                         aSingleLargeTextModel.Description = aSqlDataReader["description"].ToString();
                     }
-                    list.Add(aSingleLargeTextModel);
                 }
             }
-            return list;
+            return aSingleLargeTextModel;
         }
-        public List<SingleLargeTextModel> getProjectSourceLinkByUserId(int userid, int defaultId)
+        public SingleLargeTextModel getProjectSourceLinkByUserId(int userid, int defaultId)
         {
-            List<SingleLargeTextModel> list = new List<SingleLargeTextModel>();
+            SingleLargeTextModel aSingleLargeTextModel = new SingleLargeTextModel();
             using (SqlConnection aSqlConnection
                 = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
@@ -305,7 +300,6 @@ namespace DataAccess.DbGateways
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
-                    SingleLargeTextModel aSingleLargeTextModel = new SingleLargeTextModel();
                     while (aSqlDataReader.Read())
                     {
                         aSingleLargeTextModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
@@ -313,14 +307,13 @@ namespace DataAccess.DbGateways
                         aSingleLargeTextModel.Data = aSqlDataReader["data"].ToString();
                         aSingleLargeTextModel.Description = aSqlDataReader["description"].ToString();
                     }
-                    list.Add(aSingleLargeTextModel);
                 }
             }
-            return list;
+            return aSingleLargeTextModel;
         }
-        public List<SingleDateModel> getDateCreatedByUserId(int userid, int defaultId)
+        public SingleDateModel getDateCreatedByUserId(int userid, int defaultId)
         {
-            List<SingleDateModel> list = new List<SingleDateModel>();
+            SingleDateModel aSingleDateModel = new SingleDateModel();
             using (SqlConnection aSqlConnection
                 = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
@@ -333,7 +326,6 @@ namespace DataAccess.DbGateways
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
-                    SingleDateModel aSingleDateModel = new SingleDateModel();
                     while (aSqlDataReader.Read())
                     {
                         aSingleDateModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
@@ -341,14 +333,13 @@ namespace DataAccess.DbGateways
                         aSingleDateModel.Data = Convert.ToDateTime(aSqlDataReader["data"].ToString());
                         aSingleDateModel.Description = aSqlDataReader["description"].ToString();
                     }
-                    list.Add(aSingleDateModel);
                 }
             }
-            return list;
+            return aSingleDateModel;
         }
-        public List<SingleLargeTextModel> getOneSingleBriefForWholeProjectByUserId(int userid, int defaultId)
+        public SingleLargeTextModel getOneSingleBriefForWholeProjectByUserId(int userid, int defaultId)
         {
-            List<SingleLargeTextModel> list = new List<SingleLargeTextModel>();
+            SingleLargeTextModel aSingleLargeTextModel = new SingleLargeTextModel();
             using (SqlConnection aSqlConnection
                 = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
@@ -361,7 +352,6 @@ namespace DataAccess.DbGateways
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
-                    SingleLargeTextModel aSingleLargeTextModel = new SingleLargeTextModel();
                     while (aSqlDataReader.Read())
                     {
                         aSingleLargeTextModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
@@ -369,15 +359,14 @@ namespace DataAccess.DbGateways
                         aSingleLargeTextModel.Data = aSqlDataReader["data"].ToString();
                         aSingleLargeTextModel.Description = aSqlDataReader["description"].ToString();
                     }
-                    list.Add(aSingleLargeTextModel);
                 }
             }
-            return list;
+            return aSingleLargeTextModel;
         }
         /**/
-        public List<SmallTextListDataModel> getTechnologyTypeByUserId(int userid)
+        public SmallTextListDataModel getTechnologyTypeByUserId(int userid)
         {
-            List<SmallTextListDataModel> list = new List<SmallTextListDataModel>();
+            SmallTextListDataModel aSmallTextListDataModel = new SmallTextListDataModel();
             using (SqlConnection aSqlConnection
                 = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
@@ -389,7 +378,6 @@ namespace DataAccess.DbGateways
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
-                    SmallTextListDataModel aSmallTextListDataModel = new SmallTextListDataModel();
                     while (aSqlDataReader.Read())
                     {
                         aSmallTextListDataModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
@@ -397,10 +385,9 @@ namespace DataAccess.DbGateways
                         aSmallTextListDataModel.Data = aSqlDataReader["data"].ToString();
                         aSmallTextListDataModel.Description = aSqlDataReader["description"].ToString();
                     }
-                    list.Add(aSmallTextListDataModel);
                 }
             }
-            return list;
+            return aSmallTextListDataModel;
         }
         public List<SmallTextListDataModel> getImagesByUserId(int userid)
         {
@@ -429,9 +416,9 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
-        public List<SingleSmallTextModel> getProjectNameByUserId(int userid)
+        public SingleSmallTextModel getProjectNameByUserId(int userid)
         {
-            List<SingleSmallTextModel> list = new List<SingleSmallTextModel>();
+            SingleSmallTextModel aSingleSmallTextModel = new SingleSmallTextModel();
             using (SqlConnection aSqlConnection
                 = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
@@ -443,7 +430,6 @@ namespace DataAccess.DbGateways
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
-                    SingleSmallTextModel aSingleSmallTextModel = new SingleSmallTextModel();
                     while (aSqlDataReader.Read())
                     {
                         aSingleSmallTextModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
@@ -451,14 +437,13 @@ namespace DataAccess.DbGateways
                         aSingleSmallTextModel.Data = aSqlDataReader["data"].ToString();
                         aSingleSmallTextModel.Description = aSqlDataReader["description"].ToString();
                     }
-                    list.Add(aSingleSmallTextModel);
                 }
             }
-            return list;
+            return aSingleSmallTextModel;
         }
-        public List<SingleSmallTextModel> getProjectSubNameByUserId(int userid)
+        public SingleSmallTextModel getProjectSubNameByUserId(int userid)
         {
-            List<SingleSmallTextModel> list = new List<SingleSmallTextModel>();
+            SingleSmallTextModel aSingleSmallTextModel = new SingleSmallTextModel();
             using (SqlConnection aSqlConnection
                 = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
@@ -470,7 +455,6 @@ namespace DataAccess.DbGateways
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
-                    SingleSmallTextModel aSingleSmallTextModel = new SingleSmallTextModel();
                     while (aSqlDataReader.Read())
                     {
                         aSingleSmallTextModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
@@ -478,10 +462,9 @@ namespace DataAccess.DbGateways
                         aSingleSmallTextModel.Data = aSqlDataReader["data"].ToString();
                         aSingleSmallTextModel.Description = aSqlDataReader["description"].ToString();
                     }
-                    list.Add(aSingleSmallTextModel);
                 }
             }
-            return list;
+            return aSingleSmallTextModel;
         }
         public List<LargeTextListDataModel> getProjectBriefByUserId(int userid)
         {
@@ -618,9 +601,9 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
-        public List<SingleLargeTextModel> getProjectLiveLinkByUserId(int userid)
+        public SingleLargeTextModel getProjectLiveLinkByUserId(int userid)
         {
-            List<SingleLargeTextModel> list = new List<SingleLargeTextModel>();
+            SingleLargeTextModel aSingleLargeTextModel = new SingleLargeTextModel();
             using (SqlConnection aSqlConnection
                 = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
@@ -632,7 +615,6 @@ namespace DataAccess.DbGateways
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
-                    SingleLargeTextModel aSingleLargeTextModel = new SingleLargeTextModel();
                     while (aSqlDataReader.Read())
                     {
                         aSingleLargeTextModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
@@ -640,14 +622,13 @@ namespace DataAccess.DbGateways
                         aSingleLargeTextModel.Data = aSqlDataReader["data"].ToString();
                         aSingleLargeTextModel.Description = aSqlDataReader["description"].ToString();
                     }
-                    list.Add(aSingleLargeTextModel);
                 }
             }
-            return list;
+            return aSingleLargeTextModel;
         }
-        public List<SingleLargeTextModel> getProjectSourceLinkByUserId(int userid)
+        public SingleLargeTextModel getProjectSourceLinkByUserId(int userid)
         {
-            List<SingleLargeTextModel> list = new List<SingleLargeTextModel>();
+            SingleLargeTextModel aSingleLargeTextModel = new SingleLargeTextModel();
             using (SqlConnection aSqlConnection
                 = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
@@ -659,7 +640,6 @@ namespace DataAccess.DbGateways
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
-                    SingleLargeTextModel aSingleLargeTextModel = new SingleLargeTextModel();
                     while (aSqlDataReader.Read())
                     {
                         aSingleLargeTextModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
@@ -667,14 +647,13 @@ namespace DataAccess.DbGateways
                         aSingleLargeTextModel.Data = aSqlDataReader["data"].ToString();
                         aSingleLargeTextModel.Description = aSqlDataReader["description"].ToString();
                     }
-                    list.Add(aSingleLargeTextModel);
                 }
             }
-            return list;
+            return aSingleLargeTextModel;
         }
-        public List<SingleDateModel> getDateCreatedByUserId(int userid)
+        public SingleDateModel getDateCreatedByUserId(int userid)
         {
-            List<SingleDateModel> list = new List<SingleDateModel>();
+            SingleDateModel aSingleDateModel = new SingleDateModel();
             using (SqlConnection aSqlConnection
                 = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
@@ -686,7 +665,6 @@ namespace DataAccess.DbGateways
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
-                    SingleDateModel aSingleDateModel = new SingleDateModel();
                     while (aSqlDataReader.Read())
                     {
                         aSingleDateModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
@@ -694,14 +672,13 @@ namespace DataAccess.DbGateways
                         aSingleDateModel.Data =Convert.ToDateTime(aSqlDataReader["data"].ToString());
                         aSingleDateModel.Description = aSqlDataReader["description"].ToString();
                     }
-                    list.Add(aSingleDateModel);
                 }
             }
-            return list;
+            return aSingleDateModel;
         }
-        public List<SingleLargeTextModel> getOneSingleBriefForWholeProjectByUserId(int userid)
+        public SingleLargeTextModel getOneSingleBriefForWholeProjectByUserId(int userid)
         {
-            List<SingleLargeTextModel> list = new List<SingleLargeTextModel>();
+            SingleLargeTextModel aSingleLargeTextModel = new SingleLargeTextModel();
             using (SqlConnection aSqlConnection
                 = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
@@ -713,18 +690,16 @@ namespace DataAccess.DbGateways
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
-                    SingleLargeTextModel aSingleLargeTextModel = new SingleLargeTextModel();
                     while (aSqlDataReader.Read())
                     {
                         aSingleLargeTextModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
                         aSingleLargeTextModel.RepositorychildId = Convert.ToInt32(aSqlDataReader["repositorychildId"].ToString());
                         aSingleLargeTextModel.Data = aSqlDataReader["data"].ToString();
                         aSingleLargeTextModel.Description = aSqlDataReader["description"].ToString();
-                    }
-                    list.Add(aSingleLargeTextModel);
+                    } 
                 }
             }
-            return list;
+            return aSingleLargeTextModel;
         }
 
         public List<ProjectModel> Get_ProjectsDefault_ByUserId(int userid)
