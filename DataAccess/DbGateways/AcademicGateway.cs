@@ -360,7 +360,7 @@ namespace DataAccess.DbGateways
                         aSingleDateModel.Data = Convert.ToDateTime(aSqlDataReader["data"].ToString());
                         aSingleDateModel.Description = aSqlDataReader["description"].ToString();
                     }
-                    list.Add(aSingleDateModel);
+                    
                 }
             }
             return aSingleDateModel
