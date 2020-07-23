@@ -95,6 +95,7 @@
     <Compile Include="Models\OnlineLinkDataModel.cs" />
     <Compile Include="Models\ProjectModel.cs" />
     <Compile Include="Models\SelfImageModel.cs" />
+    <Compile Include="Models\SelfImagProfileModel.cs" />
     <Compile Include="Models\SingleDateModel.cs" />
     <Compile Include="Models\SingleIntegerModel.cs" />
     <Compile Include="Models\SingleLargeTextModel.cs" />
