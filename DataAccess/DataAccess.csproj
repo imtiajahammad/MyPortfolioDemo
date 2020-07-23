@@ -90,6 +90,7 @@
     <Compile Include="Models\ContactModel.cs" />
     <Compile Include="Models\ContactProfileModel.cs" />
     <Compile Include="Models\ExperienceModel.cs" />
+    <Compile Include="Models\ExperienceProfileModel.cs" />
     <Compile Include="Models\LargeTextListDataModel.cs" />
     <Compile Include="Models\OnlineLinkDataModel.cs" />
     <Compile Include="Models\ProjectModel.cs" />
