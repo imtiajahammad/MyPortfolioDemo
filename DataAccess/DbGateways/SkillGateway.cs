@@ -10,9 +10,9 @@ namespace DataAccess.DbGateways
 {
     public class SkillGateway
     {
-        public List<SingleSmallTextModel> getTopicNameByUserId(int userid, int defaultId)
+        public SingleSmallTextModel getTopicNameByUserId(int userid, int defaultId)
         {
-            List<SingleSmallTextModel> list = new List<SingleSmallTextModel>();
+            SingleSmallTextModel aSingleSmallTextModel = new SingleSmallTextModel();
             using (SqlConnection aSqlConnection
                 = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
@@ -25,18 +25,16 @@ namespace DataAccess.DbGateways
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
-                    SingleSmallTextModel aSingleSmallTextModel = new SingleSmallTextModel();
                     while (aSqlDataReader.Read())
                     {
                         aSingleSmallTextModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
                         aSingleSmallTextModel.RepositorychildId = Convert.ToInt32(aSqlDataReader["repositorychildId"].ToString());
                         aSingleSmallTextModel.Data = aSqlDataReader["data"].ToString();
                         aSingleSmallTextModel.Description = aSqlDataReader["description"].ToString();
-                    }
-                    list.Add(aSingleSmallTextModel);
+                    } 
                 }
             }
-            return list;
+            return aSingleSmallTextModel;
         }
         public List<SmallTextListDataModel> getSubTopicNameByUserId(int userid, int defaultId)
         {
@@ -66,38 +64,36 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
-        public List<SingleIntegerModel> getEndDateByUserId(int userid, int defaultId)
+        public SingleIntegerModel getPercentageByUserId(int userid, int defaultId)
         {
-            List<SingleIntegerModel> list = new List<SingleIntegerModel>();
+            SingleIntegerModel aSingleIntegerModel = new SingleIntegerModel();
             using (SqlConnection aSqlConnection
                 = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    cmd.CommandText = "get_skills_subTopicName";
+                    cmd.CommandText = "get_skills_percentage";
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("userId", userid);
                     cmd.Parameters.AddWithValue("defaultId", defaultId);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
-                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();
-                    SingleIntegerModel aSingleIntegerModel = new SingleIntegerModel();
+                    SqlDataReader aSqlDataReader = cmd.ExecuteReader(); 
                     while (aSqlDataReader.Read())
                     {
                         aSingleIntegerModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
                         aSingleIntegerModel.RepositorychildId = Convert.ToInt32(aSqlDataReader["repositorychildId"].ToString());
                         aSingleIntegerModel.Data = Convert.ToInt32(aSqlDataReader["data"].ToString());
                         aSingleIntegerModel.Description = aSqlDataReader["description"].ToString();
-                    }
-                    list.Add(aSingleIntegerModel);
+                    } 
                 }
             }
-            return list;
+            return aSingleIntegerModel;
         }
         /**/
-        public List<SingleSmallTextModel> getTopicNameByUserId(int userid)
+        public SingleSmallTextModel getTopicNameByUserId(int userid)
         {
-            List<SingleSmallTextModel> list = new List<SingleSmallTextModel>();
+            SingleSmallTextModel aSingleSmallTextModel = new SingleSmallTextModel();
             using (SqlConnection aSqlConnection
                 = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
@@ -108,8 +104,7 @@ namespace DataAccess.DbGateways
                     cmd.Parameters.AddWithValue("userId", userid);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
-                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();
-                    SingleSmallTextModel aSingleSmallTextModel = new SingleSmallTextModel();
+                    SqlDataReader aSqlDataReader = cmd.ExecuteReader(); 
                     while (aSqlDataReader.Read())
                     {
                         aSingleSmallTextModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
@@ -117,10 +112,9 @@ namespace DataAccess.DbGateways
                         aSingleSmallTextModel.Data = aSqlDataReader["data"].ToString();
                         aSingleSmallTextModel.Description = aSqlDataReader["description"].ToString();
                     }
-                    list.Add(aSingleSmallTextModel);
                 }
             }
-            return list;
+            return aSingleSmallTextModel;
         }
         public List<SmallTextListDataModel> getSubTopicNameByUserId(int userid)
         {
@@ -149,32 +143,30 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
-        public List<SingleIntegerModel> getEndDateByUserId(int userid)
+        public SingleIntegerModel getEndDateByUserId(int userid)
         {
-            List<SingleIntegerModel> list = new List<SingleIntegerModel>();
+            SingleIntegerModel aSingleIntegerModel = new SingleIntegerModel();
             using (SqlConnection aSqlConnection
                 = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    cmd.CommandText = "get_skills_subTopicName_ByUserId";
+                    cmd.CommandText = "get_skills_percentage_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("userId", userid);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
-                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();
-                    SingleIntegerModel aSingleIntegerModel = new SingleIntegerModel();
+                    SqlDataReader aSqlDataReader = cmd.ExecuteReader(); 
                     while (aSqlDataReader.Read())
                     {
                         aSingleIntegerModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
                         aSingleIntegerModel.RepositorychildId = Convert.ToInt32(aSqlDataReader["repositorychildId"].ToString());
                         aSingleIntegerModel.Data = Convert.ToInt32(aSqlDataReader["data"].ToString());
                         aSingleIntegerModel.Description = aSqlDataReader["description"].ToString();
-                    }
-                    list.Add(aSingleIntegerModel);
+                    } 
                 }
             }
-            return list;
+            return aSingleIntegerModel;
         }
 
         
@@ -202,6 +194,21 @@ namespace DataAccess.DbGateways
                     }
                     list.Add(aSkillModel);
                 }
+            }
+            return list;
+        }
+
+        public List<SkillProfileModel> Get_SkillProfile_ByUserId(List<SkillModel> skillids, int userid)
+        {
+            List<SkillProfileModel> list = new List<SkillProfileModel>();
+            foreach (SkillModel aSkillModel in skillids)
+            {
+                SkillProfileModel aSkillProfileModel = new SkillProfileModel();
+                aSkillProfileModel.id = aSkillProfileModel.id;
+                aSkillProfileModel.topicName = getTopicNameByUserId(userid, aSkillModel.topicNameId);
+                aSkillProfileModel.subTopicName = getSubTopicNameByUserId(userid, aSkillModel.subTopicNameId);
+                aSkillProfileModel.percentage = getPercentageByUserId(userid, aSkillModel.percentageId);
+                list.Add(aSelfImagProfileModel);
             }
             return list;
         }
