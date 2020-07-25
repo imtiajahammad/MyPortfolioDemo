@@ -80,6 +80,7 @@
     <Compile Include="DbGateways\ImageGateway.cs" />
     <Compile Include="DbGateways\ProjectGateway.cs" />
     <Compile Include="DbGateways\SkillGateway.cs" />
+    <Compile Include="DbGateways\UserGateway.cs" />
     <Compile Include="Models\AboutModel.cs" />
     <Compile Include="Models\AboutProfileModel.cs" />
     <Compile Include="Models\AcademicModel.cs" />
