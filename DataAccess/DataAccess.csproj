@@ -81,6 +81,14 @@
     <Compile Include="DbGateways\ProjectGateway.cs" />
     <Compile Include="DbGateways\SkillGateway.cs" />
     <Compile Include="DbGateways\UserGateway.cs" />
+    <Compile Include="Managers\AboutManager.cs" />
+    <Compile Include="Managers\AcademicManager.cs" />
+    <Compile Include="Managers\CareerAdjectiveManager.cs" />
+    <Compile Include="Managers\ContactManager.cs" />
+    <Compile Include="Managers\ExperienceManager.cs" />
+    <Compile Include="Managers\ImageManager.cs" />
+    <Compile Include="Managers\ProjectManager.cs" />
+    <Compile Include="Managers\UserManager.cs" />
     <Compile Include="Models\AboutModel.cs" />
     <Compile Include="Models\AboutProfileModel.cs" />
     <Compile Include="Models\AcademicModel.cs" />
@@ -115,9 +123,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Managers\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
