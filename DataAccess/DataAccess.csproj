@@ -101,6 +101,7 @@
     <Compile Include="Models\SingleLargeTextModel.cs" />
     <Compile Include="Models\SingleSmallTextModel.cs" />
     <Compile Include="Models\SkillModel.cs" />
+    <Compile Include="Models\SkillProfileModel.cs" />
     <Compile Include="Models\SmallTextListDataModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
