@@ -712,7 +712,7 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "get_ProjectsDefault_ByUserId";
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("userid", userid);
+                    cmd.Parameters.AddWithValue("userid", userid); 
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
