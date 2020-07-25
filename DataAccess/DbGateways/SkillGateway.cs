@@ -208,7 +208,7 @@ namespace DataAccess.DbGateways
                 aSkillProfileModel.topicName = getTopicNameByUserId(userid, aSkillModel.topicNameId);
                 aSkillProfileModel.subTopicName = getSubTopicNameByUserId(userid, aSkillModel.subTopicNameId);
                 aSkillProfileModel.percentage = getPercentageByUserId(userid, aSkillModel.percentageId);
-                list.Add(aSelfImagProfileModel);
+                list.Add(aSkillProfileModel);
             }
             return list;
         }
