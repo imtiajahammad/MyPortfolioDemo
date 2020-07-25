@@ -739,5 +739,18 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
+        /*public List<SelfImagProfileModel> Get_SelfImagProfile_ByUserId(List<SelfImageModel> selfImagids, int userid)
+        {
+            List<SelfImagProfileModel> list = new List<SelfImagProfileModel>();
+            foreach (SelfImageModel aSelfImageModel in selfImagids)
+            {
+                SelfImagProfileModel aSelfImagProfileModel = new SelfImagProfileModel();
+                aSelfImagProfileModel.id = aSelfImageModel.id;
+                aSelfImagProfileModel.homeImageList = getHomeImageByUserId(userid, aSelfImageModel.homeImageListId);
+                list.Add(aSelfImagProfileModel);
+            }
+            return list;
+        }*/
+
     }
 }
