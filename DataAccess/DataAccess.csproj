@@ -94,7 +94,10 @@
     <Compile Include="Models\AboutProfileModel.cs" />
     <Compile Include="Models\AcademicModel.cs" />
     <Compile Include="Models\AcademicProfileModel.cs" />
+    <Compile Include="Models\AccomplishmentModel.cs" />
+    <Compile Include="Models\AccomplishmentProfileModel.cs" />
     <Compile Include="Models\BlogModel.cs" />
+    <Compile Include="Models\BlogProfileModel.cs" />
     <Compile Include="Models\CareerAdjectiveModel.cs" />
     <Compile Include="Models\CareerAdjectiveProfileModel.cs" />
     <Compile Include="Models\ContactModel.cs" />
@@ -105,6 +108,8 @@
     <Compile Include="Models\OnlineLinkDataModel.cs" />
     <Compile Include="Models\ProjectModel.cs" />
     <Compile Include="Models\ProjectProfileModel.cs" />
+    <Compile Include="Models\RandomFactModel.cs" />
+    <Compile Include="Models\RandomFactProfileModel.cs" />
     <Compile Include="Models\SelfImageModel.cs" />
     <Compile Include="Models\SelfImagProfileModel.cs" />
     <Compile Include="Models\SingleDateModel.cs" />
@@ -114,6 +119,9 @@
     <Compile Include="Models\SkillModel.cs" />
     <Compile Include="Models\SkillProfileModel.cs" />
     <Compile Include="Models\SmallTextListDataModel.cs" />
+    <Compile Include="Models\ToolsIUseModel.cs" />
+    <Compile Include="Models\ToolsIUseProfileModel.cs" />
+    <Compile Include="Models\UserProfileModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
