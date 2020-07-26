@@ -739,18 +739,30 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
-        /*public List<SelfImagProfileModel> Get_SelfImagProfile_ByUserId(List<SelfImageModel> selfImagids, int userid)
+        public List<ProjectProfileModel> Get_SelfImagProfile_ByUserId(List<ProjectModel> projectids, int userid)
         {
-            List<SelfImagProfileModel> list = new List<SelfImagProfileModel>();
-            foreach (SelfImageModel aSelfImageModel in selfImagids)
+            List<ProjectProfileModel> list = new List<ProjectProfileModel>();
+            foreach (ProjectModel aProjectModel in projectids)
             {
-                SelfImagProfileModel aSelfImagProfileModel = new SelfImagProfileModel();
-                aSelfImagProfileModel.id = aSelfImageModel.id;
-                aSelfImagProfileModel.homeImageList = getHomeImageByUserId(userid, aSelfImageModel.homeImageListId);
-                list.Add(aSelfImagProfileModel);
+                ProjectProfileModel aProjectProfileModel = new ProjectProfileModel();
+                aProjectProfileModel.id = aProjectModel.id;
+                aProjectProfileModel.technologyType = getTechnologyTypeByUserId(userid, aProjectModel.technologyTypeId);
+                aProjectProfileModel.images = getImagesByUserId(userid, aProjectModel.imageId);
+                aProjectProfileModel.projectName = getProjectNameByUserId(userid, aProjectModel.projectNameId);
+                aProjectProfileModel.projectSubName = getProjectSubNameByUserId(userid, aProjectModel.projectSubNameId);
+                aProjectProfileModel.projectBrief = getProjectBriefByUserId(userid, aProjectModel.projectBriefId);
+                aProjectProfileModel.projectKeyPoints = getProjectKeyPointsByUserId(userid, aProjectModel.projectKeyPointId);
+                aProjectProfileModel.projectTechnologyBrief = getProjectTechnologyBriefByUserId(userid, aProjectModel.projectTechnologyBriefId);
+                aProjectProfileModel.projectTechnologies = getProjectTechnologiesByUserId(userid, aProjectModel.projectTechnologieId);
+                aProjectProfileModel.projectTechnologiesIcons = getProjectTechnologiesIconsByUserId(userid, aProjectModel.projectTechnologiesIconId);
+                aProjectProfileModel.projectLiveLink = getProjectLiveLinkByUserId(userid, aProjectModel.projectLiveLinkId);
+                aProjectProfileModel.projectSourceLink = getProjectSourceLinkByUserId(userid, aProjectModel.projectSourceLinkId);
+                aProjectProfileModel.dateCreated = getDateCreatedByUserId(userid, aProjectModel.dateCreatedId);
+                aProjectProfileModel.oneSingleBriefForWholeProject = getOneSingleBriefForWholeProjectByUserId(userid, aProjectModel.oneSingleBriefForWholeProjectId);
+                list.Add(aProjectProfileModel);
             }
             return list;
-        }*/
+        }
 
     }
 }
