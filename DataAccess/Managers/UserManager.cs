@@ -49,5 +49,9 @@ namespace DataAccess.Managers
         { 
             return userGateway.GetCareerAdjectiveId_ByUserId(userid);
         }
+
+
+
+
     }
 }
