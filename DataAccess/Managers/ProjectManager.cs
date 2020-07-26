@@ -124,9 +124,9 @@ namespace DataAccess.Managers
         { 
             return projectGateway.Get_ProjectsDefault_ByUserId(userid);
         }
-        /*public List<SelfImagProfileModel> Get_SelfImagProfile_ByUserId(List<SelfImageModel> selfImagids, int userid)
+        public List<ProjectProfileModel> Get_SelfImagProfile_ByUserId(List<ProjectModel> projectids, int userid)
         {
-            return imageGateway.Get_SelfImagProfile_ByUserId(selfImagids, userid);
-        }*/
+            return projectGateway.Get_SelfImagProfile_ByUserId(projectids,userid);
+        }
     }
 }
