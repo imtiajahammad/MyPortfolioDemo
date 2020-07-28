@@ -16,16 +16,15 @@ namespace MyPortfolioDemo.Controllers
         {
             this.aboutManager = new AboutManager();
         }
-        [HttpGet]
-        // GET api/values
+        /*[HttpGet]
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
-        }
+            return new string[] { "about1", "about2" };
+        }*/
         [HttpGet]
-        // GET api/values/5
         public List<AboutProfileModel> Get(int userId)
         {
+            //http://localhost:57260/api/about?userid=1
             //return "value";
             List<AboutModel> aboutids = aboutManager.Get_AboutDefault_ByUserId(userId);
             return aboutManager.Get_AboutProfile_ByUserId(aboutids, userId);
