@@ -997,48 +997,14 @@ namespace DataAccess.DbGateways
         /**/
         public List<AboutModel> Get_AboutDefault_ByUserId(int userid)
         {
+            Object conStr=System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"];/* LocalSqlServer*/
+
+            Object conStr2 = System.Configuration.ConfigurationManager.ConnectionStrings;
+            Object conStr3 = System.Configuration.ConfigurationManager.ConnectionStrings["LocalSqlServer"];
+
             List<AboutModel> list = new List<AboutModel>();
-
-            /*Object aa = System.Configuration.ConfigurationManager.ConnectionStrings;
-             //.ConfigurationManager.ConnectionStrings["DefaultConnection"];
-             var a = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"];
-             var bb = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection2"];
-             var cc = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection3"];
-             var dd = System.Configuration.ConfigurationManager.ConnectionStrings["yourconnectinstringName"];
-             var ee = System.Configuration.ConfigurationManager.ConnectionStrings["dbconnection"];
-
-
-             string connectionString = @"Data Source=IMTIAJ-PC\IMTIAJSQL;Database=MyPortfolioDemo1;Integrated Security=true";
-             SqlConnection connection = new SqlConnection(connectionString);
-             string query = "select * from users";
-             SqlCommand command = new SqlCommand(query, connection);
-             try
-             {
-                 connection.Open();
-                 SqlDataReader reader = command.ExecuteReader();
-                 while (reader.Read())
-                 {
-                     var ab = 0;
-
-                 }
-                 connection.Close();
-             }
-             catch (Exception e)
-             {
-                 var aba = 0;
-             }*/
-            Object ab = ConfigurationManager.ConnectionStrings;
-            //.ConnectionStrings["dbconnection"];
-
-            int abab = 12;
-            /*
-             http://localhost:57260/api/about?userid=1
-            */
-            using (                    
-                SqlConnection aSqlConnection= new SqlConnection(
-                            ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString
-                            )
-                  )
+            using (SqlConnection aSqlConnection
+                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
@@ -1066,7 +1032,7 @@ namespace DataAccess.DbGateways
                     }
                     list.Add(aAboutModel);
                 }
-            }
+            }            
             return list;
         }
 
