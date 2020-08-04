@@ -22,6 +22,7 @@ namespace MyPortfolioDemo.Controllers
             return new string[] { "about1", "about2" };
         }*/
         [HttpGet]
+        [Route("~/api/about/{userId:int}")]
         public List<AboutProfileModel> Get(int userId)
         {
             //http://localhost:57260/api/about?userid=1
