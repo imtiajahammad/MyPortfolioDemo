@@ -40,14 +40,14 @@ namespace DataAccess.Managers
             return contactGeteway.getMessageByUserId(userid);
         }
 
-        public List<ContactModel> Get_CareerAdjectiveDefault_ByUserId(int userid)
+        public List<ContactModel> Get_ContactDefault_ByUserId(int userid)
         { 
-            return contactGeteway.Get_CareerAdjectiveDefault_ByUserId(userid);
+            return contactGeteway.Get_ContactDefault_ByUserId(userid);
         }
 
-        public List<ContactProfileModel> Get_CareerAdjectiveProfile_ByUserId(List<ContactModel> contactids, int userid)
+        public List<ContactProfileModel> Get_ContactProfile_ByUserId(List<ContactModel> contactids, int userid)
         { 
-            return contactGeteway.Get_CareerAdjectiveProfile_ByUserId(contactids,userid);
+            return contactGeteway.Get_ContactProfile_ByUserId(contactids,userid);
         }
     }
 }

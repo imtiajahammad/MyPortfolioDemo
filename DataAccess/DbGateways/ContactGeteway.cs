@@ -176,7 +176,7 @@ namespace DataAccess.DbGateways
             return aSingleLargeTextModel;
         }
 
-        public List<ContactModel> Get_CareerAdjectiveDefault_ByUserId(int userid)
+        public List<ContactModel> Get_ContactDefault_ByUserId(int userid)
         {
             List<ContactModel> list = new List<ContactModel>();
             using (SqlConnection aSqlConnection
@@ -204,7 +204,7 @@ namespace DataAccess.DbGateways
             return list;
         }
 
-        public List<ContactProfileModel> Get_CareerAdjectiveProfile_ByUserId(List<ContactModel> contactids, int userid)
+        public List<ContactProfileModel> Get_ContactProfile_ByUserId(List<ContactModel> contactids, int userid)
         {
             List<ContactProfileModel> list = new List<ContactProfileModel>();
             foreach (ContactModel aContactModel in contactids)
