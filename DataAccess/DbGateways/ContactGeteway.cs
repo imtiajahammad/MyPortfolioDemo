@@ -218,5 +218,40 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
+        public int UpdateContactDefault(ContactModel contactModel/*int userid, int defaultId*/)
+        {
+            int rowAffected = 0;
+            using (SqlConnection aSqlConnection
+                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "update contacts_default set nameId=@nameId,	emailId=@emailId,messageId=@messageId where id=@id";
+                    //cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@id", contactModel.id);
+                    cmd.Parameters.AddWithValue("@nameId", contactModel.nameId);
+                    cmd.Parameters.AddWithValue("@emailId", contactModel.emailId);
+                    cmd.Parameters.AddWithValue("@messageId", contactModel.messageId);
+                    //cmd.Parameters.Add("returnBool", SqlDbType.Int);
+                    //cmd.Parameters["returnBool"].Direction = ParameterDirection.Output;
+                    cmd.Connection = aSqlConnection;
+                    try
+                    {
+                        aSqlConnection.Open();
+                        rowAffected = cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        //throw error
+                    }
+                    /*finally
+                    {
+                        aSqlConnection.Close();
+                    }*/
+                }
+            }
+            return rowAffected;
+        }
     }
 }
