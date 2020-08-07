@@ -75,6 +75,7 @@
     <Compile Include="DbGateways\AboutGateway.cs" />
     <Compile Include="DbGateways\AcademicGateway.cs" />
     <Compile Include="DbGateways\CareerAdjectiveGateway.cs" />
+    <Compile Include="DbGateways\CommonGateway.cs" />
     <Compile Include="DbGateways\ContactGeteway.cs" />
     <Compile Include="DbGateways\ExperienceGateway.cs" />
     <Compile Include="DbGateways\ImageGateway.cs" />
