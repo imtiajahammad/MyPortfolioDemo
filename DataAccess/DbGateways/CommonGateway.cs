@@ -47,6 +47,7 @@ namespace DataAccess.DbGateways
             }
             return returnBool;
         }
+
         public int UpdateSingleLargeTextModel(SingleLargeTextModel singleLargeTextModel/*int userid, int defaultId*/)
         {
             int returnBool = 0;
@@ -84,6 +85,7 @@ namespace DataAccess.DbGateways
             }
             return returnBool;
         }
+
 
         public int UpdateSingleIntegerModel(SingleIntegerModel singleIntegerModel/*int userid, int defaultId*/)
         {
@@ -198,6 +200,44 @@ namespace DataAccess.DbGateways
             return returnBool;
         }
 
+        public int UpdateSmallTextListDataModel(SmallTextListDataModel  smallTextListDataModel/*int userid, int defaultId*/)
+        {
+            int returnBool = 0;
+            using (SqlConnection aSqlConnection
+                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "Update_SmallTextListData";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("id", smallTextListDataModel.Id);
+                    cmd.Parameters.AddWithValue("parentId", smallTextListDataModel.ParentId);
+                    cmd.Parameters.AddWithValue("data", smallTextListDataModel.Data);
+                    cmd.Parameters.AddWithValue("description", smallTextListDataModel.Description);
+
+                    cmd.Parameters.Add("returnBool", SqlDbType.Int);
+                    cmd.Parameters["returnBool"].Direction = ParameterDirection.Output;
+
+                    cmd.Connection = aSqlConnection;
+                    try
+                    {
+                        aSqlConnection.Open();
+                        Object obj = cmd.ExecuteReader();
+                        returnBool = Convert.ToInt32(cmd.Parameters["returnBool"].Value);
+                    }
+                    catch (Exception ex)
+                    {
+                        //throw error
+                    }
+                    /*finally
+                    {
+                        aSqlConnection.Close();
+                    }*/
+                }
+            }
+            return returnBool;
+        }
+
         public int UpdateOnlineLinkDataModel(OnlineLinkDataModel onlineLinkDataModel/*int userid, int defaultId*/)
         {
             int returnBool = 0;
@@ -236,6 +276,214 @@ namespace DataAccess.DbGateways
                 }
             }
             return returnBool;
+        }
+
+
+        public int DeleteSingleSmallTextModel(SingleSmallTextModel singleSmallTextModel/*int userid, int defaultId*/)
+        {
+            int rowAffected = 0;
+            using (SqlConnection aSqlConnection
+                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "delete from singleSmallText_default  where id=@defaultId";
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@defaultId", singleSmallTextModel.Id);
+                    cmd.Connection = aSqlConnection;
+                    try
+                    {
+                        aSqlConnection.Open();
+                        rowAffected = cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        //throw error
+                    }
+                    /*finally
+                    {
+                        aSqlConnection.Close();
+                    }*/
+                }
+            }
+            return rowAffected;
+        }
+        public int DeleteSingleLargeTextModel(SingleLargeTextModel singleLargeTextModel/*int userid, int defaultId*/)
+        {
+            int rowAffected = 0;
+            using (SqlConnection aSqlConnection
+                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "delete from singleLargeText_default where id=@defaultId";
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@defaultId", singleLargeTextModel.Id);
+                    cmd.Connection = aSqlConnection;
+                    try
+                    {
+                        aSqlConnection.Open();
+                        rowAffected = cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        //throw error
+                    }
+                    /*finally
+                    {
+                        aSqlConnection.Close();
+                    }*/
+                }
+            }
+            return rowAffected;
+        }
+        public int DeleteSingleIntegerModel(SingleIntegerModel singleIntegerModel/*int userid, int defaultId*/)
+        {
+            int rowAffected = 0;
+            using (SqlConnection aSqlConnection
+                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "delete from singleIntegerDefault where id=@defaultId";
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@defaultId", singleIntegerModel.Id);
+                    cmd.Connection = aSqlConnection;
+                    try
+                    {
+                        aSqlConnection.Open();
+                        rowAffected = cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        //throw error
+                    }
+                    /*finally
+                    {
+                        aSqlConnection.Close();
+                    }*/
+                }
+            }
+            return rowAffected;
+        }
+        public int DeleteSingleDateModel(SingleDateModel singleDateModel/*int userid, int defaultId*/)
+        {
+            int rowAffected = 0;
+            using (SqlConnection aSqlConnection
+                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "delete from singleDateDefault where id=@defaultId";
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@defaultId", singleDateModel.Id);
+                    cmd.Connection = aSqlConnection;
+                    try
+                    {
+                        aSqlConnection.Open();
+                        rowAffected = cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        //throw error
+                    }
+                    /*finally
+                    {
+                        aSqlConnection.Close();
+                    }*/
+                }
+            }
+            return rowAffected;
+        }
+        public int DeleteLargeTextListDataModel(LargeTextListDataModel largeTextListDataModel/*int userid, int defaultId*/)
+        {
+            int rowAffected = 0;
+            using (SqlConnection aSqlConnection
+                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "delete From LargeTextListData where id=@defaultId and parentId=@parentId";
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@defaultId", largeTextListDataModel.Id);
+                    cmd.Parameters.AddWithValue("@parentId", largeTextListDataModel.ParentId);
+                    cmd.Connection = aSqlConnection;
+                    try
+                    {
+                        aSqlConnection.Open();
+                        rowAffected = cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        //throw error
+                    }
+                    /*finally
+                    {
+                        aSqlConnection.Close();
+                    }*/
+                }
+            }
+            return rowAffected;
+        }
+        public int DeleteSmallTextListDataModel(SmallTextListDataModel smallTextListDataModel/*int userid, int defaultId*/)
+        {
+            int rowAffected = 0;
+            using (SqlConnection aSqlConnection
+                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "delete From smalltextListData where id=@defaultId and parentId=@parentId";
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@defaultId", smallTextListDataModel.Id);
+                    cmd.Parameters.AddWithValue("@parentId", smallTextListDataModel.ParentId);
+                    cmd.Connection = aSqlConnection;
+                    try
+                    {
+                        aSqlConnection.Open();
+                        rowAffected = cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        //throw error
+                    }
+                    /*finally
+                    {
+                        aSqlConnection.Close();
+                    }*/
+                }
+            }
+            return rowAffected;
+        }
+        public int DeleteOnlineLinkDataModel(OnlineLinkDataModel onlineLinkDataModel/*int userid, int defaultId*/)
+        {
+            int rowAffected = 0;
+            using (SqlConnection aSqlConnection
+                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "delete From onlineLinkData where id=@defaultId and parentId=@parentId";
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@defaultId", onlineLinkDataModel.Id);
+                    cmd.Parameters.AddWithValue("@parentId", onlineLinkDataModel.ParentId);
+                    cmd.Connection = aSqlConnection;
+                    try
+                    {
+                        aSqlConnection.Open();
+                        rowAffected = cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        //throw error
+                    }
+                    /*finally
+                    {
+                        aSqlConnection.Close();
+                    }*/
+                }
+            }
+            return rowAffected;
         }
     }
 }
