@@ -446,5 +446,51 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
+        public int UpdateCareerAdjectiveDefault(CareerAdjectiveModel careerAdjectiveModel/*int userid, int defaultId*/)
+        {
+            int rowAffected = 0;
+            using (SqlConnection aSqlConnection
+                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "update careerAdjective_default set personalQualityId = @personalQualityId,  " +
+                        " skillsByTopicId = @skillsByTopicId," +
+                        " briefAboutMeId = @briefAboutMeId,  myWorkFeatureId = @myWorkFeatureId, " +
+                        "currentFocusId = @currentFocusId,  onlineResumeLinkId = @onlineResumeLinkId," +
+                        " detailsListId = @detailsListId where id = @id";
+                    //cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@id", careerAdjectiveModel.id);
+                    //cmd.Parameters.AddWithValue("@userid", careerAdjectiveModel.userid);
+                    cmd.Parameters.AddWithValue("@personalQualityId", careerAdjectiveModel.personalQualityId);
+                    cmd.Parameters.AddWithValue("@skillsByTopicId", careerAdjectiveModel.skillsByTopicId);
+                    cmd.Parameters.AddWithValue("@briefAboutMeId", careerAdjectiveModel.briefAboutMeId);
+                    cmd.Parameters.AddWithValue("@myWorkFeatureId", careerAdjectiveModel.myWorkFeatureId);
+                    cmd.Parameters.AddWithValue("@currentFocusId", careerAdjectiveModel.currentFocusId);
+                    cmd.Parameters.AddWithValue("@onlineResumeLinkId", careerAdjectiveModel.onlineResumeLinkId);
+                    cmd.Parameters.AddWithValue("@detailsListId", careerAdjectiveModel.detailsListId);
+
+                    //cmd.Parameters.Add("returnBool", SqlDbType.Int);
+                    //cmd.Parameters["returnBool"].Direction = ParameterDirection.Output;
+
+                    cmd.Connection = aSqlConnection;
+                    try
+                    {
+                        aSqlConnection.Open();
+                        rowAffected = cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        //throw error
+                    }
+                    /*finally
+                    {
+                        aSqlConnection.Close();
+                    }*/
+                }
+            }
+            return rowAffected;
+        }
     }
 }
