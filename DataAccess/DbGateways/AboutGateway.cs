@@ -682,5 +682,54 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
+
+        public int UpdateAboutDefault(AboutModel aboutModel/*int userid, int defaultId*/)
+        {
+            int rowAffected = 0;
+            using (SqlConnection aSqlConnection
+                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "update about_default set firstNameId=@firstNameId,middleNameId=@middleNameId,lastNameId=@lastNameId,phoneNumberId=@phoneNumberId,briefId=@briefId,languageId=@languageId,dobId=@dobId,countryId=@countryId,cityId=@cityId,fullAddressId=@fullAddressId,socialLinksId=@socialLinksId where id=@id,";
+                    //cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@id", aboutModel.id);
+                    cmd.Parameters.AddWithValue("@firstNameId", aboutModel.firstNameId);
+                    cmd.Parameters.AddWithValue("@middleNameId", aboutModel.middleNameId);
+                    cmd.Parameters.AddWithValue("@lastNameId", aboutModel.lastNameId);
+                    cmd.Parameters.AddWithValue("@phoneNumberId", aboutModel.phoneNumberId);
+                    cmd.Parameters.AddWithValue("@briefId", aboutModel.briefId);
+                    cmd.Parameters.AddWithValue("@languageId", aboutModel.languageId);
+                    cmd.Parameters.AddWithValue("@dobId", aboutModel.dobId);
+                    cmd.Parameters.AddWithValue("@countryId", aboutModel.countryId);
+                    cmd.Parameters.AddWithValue("@cityId", aboutModel.cityId);
+                    cmd.Parameters.AddWithValue("@fullAddressId", aboutModel.fullAddressId);
+                    cmd.Parameters.AddWithValue("@socialLinksId", aboutModel.socialLinksId);
+                     											
+                    //cmd.Parameters.Add("returnBool", SqlDbType.Int);
+                    //cmd.Parameters["returnBool"].Direction = ParameterDirection.Output;
+
+                    cmd.Connection = aSqlConnection;
+                    try
+                    {
+                        aSqlConnection.Open();
+                        rowAffected= cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        //throw error
+                    }
+                    /*finally
+                    {
+                        aSqlConnection.Close();
+                    }*/
+                }
+            }
+            return rowAffected;
+        }
+
+
+
     }
 }
