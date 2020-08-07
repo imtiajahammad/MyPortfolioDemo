@@ -445,5 +445,47 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
+
+        public int UpdateAcademicDefault(AcademicModel academicModel/*int userid, int defaultId*/)
+        {
+            int rowAffected = 0;
+            using (SqlConnection aSqlConnection
+                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "update academics_default set institutionNameId=@institutionNameId,locationId=@locationId,courseNameId=@courseNameId,cgpaId=@cgpaId,startId=@startId,endId=@endId,briefId=@briefId where id=@id";
+                    //cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@id", academicModel.id);
+                    cmd.Parameters.AddWithValue("@institutionNameId", academicModel.institutionNameId);
+                    cmd.Parameters.AddWithValue("@locationId", academicModel.locationId);
+                    cmd.Parameters.AddWithValue("@courseNameId", academicModel.courseNameId);
+                    cmd.Parameters.AddWithValue("@cgpaId", academicModel.cgpaId);
+                    cmd.Parameters.AddWithValue("@startId", academicModel.startId);
+                    cmd.Parameters.AddWithValue("@endId", academicModel.endId);
+                    cmd.Parameters.AddWithValue("@briefId", academicModel.briefId);
+
+                    //cmd.Parameters.Add("returnBool", SqlDbType.Int);
+                    //cmd.Parameters["returnBool"].Direction = ParameterDirection.Output;
+
+                    cmd.Connection = aSqlConnection;
+                    try
+                    {
+                        aSqlConnection.Open();
+                        rowAffected = cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        //throw error
+                    }
+                    /*finally
+                    {
+                        aSqlConnection.Close();
+                    }*/
+                }
+            }
+            return rowAffected;
+        }
     }
 }
