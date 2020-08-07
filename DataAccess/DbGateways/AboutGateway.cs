@@ -37,34 +37,6 @@ namespace DataAccess.DbGateways
             }
             return aSingleSmallTextModel;
         }
-        /*public List<SingleSmallTextModel> getFirstNameByUserId(int userid, int defaultId)
-        {
-            List<SingleSmallTextModel> list = new List<SingleSmallTextModel>();
-            using (SqlConnection aSqlConnection
-                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.CommandText = "get_About_firstName";
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("userId", userid);
-                    cmd.Parameters.AddWithValue("defaultId", defaultId);
-                    cmd.Connection = aSqlConnection;
-                    aSqlConnection.Open();
-                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();
-                    SingleSmallTextModel aSingleSmallTextModel = new SingleSmallTextModel();
-                    while (aSqlDataReader.Read())
-                    {
-                        aSingleSmallTextModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
-                        aSingleSmallTextModel.RepositorychildId = Convert.ToInt32(aSqlDataReader["repositorychildId"].ToString());
-                        aSingleSmallTextModel.Data = aSqlDataReader["data"].ToString();
-                        aSingleSmallTextModel.Description = aSqlDataReader["description"].ToString();
-                    }
-                    list.Add(aSingleSmallTextModel);
-                }
-            }
-            return list;
-        }*/
         public SingleSmallTextModel getMiddleNameByUserId(int userid, int defaultId)
         {
             SingleSmallTextModel aSingleSmallTextModel = new SingleSmallTextModel();
@@ -91,34 +63,7 @@ namespace DataAccess.DbGateways
             }
             return aSingleSmallTextModel;
         }
-        /*        public List<SingleSmallTextModel> getMiddleNameByUserId(int userid, int defaultId)
-        {
-            List<SingleSmallTextModel> list = new List<SingleSmallTextModel>();
-            using (SqlConnection aSqlConnection
-                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.CommandText = "get_About_middleName";
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("userId", userid);
-                    cmd.Parameters.AddWithValue("defaultId", defaultId);
-                    cmd.Connection = aSqlConnection;
-                    aSqlConnection.Open();
-                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();
-                    SingleSmallTextModel aSingleSmallTextModel = new SingleSmallTextModel();
-                    while (aSqlDataReader.Read())
-                    {
-                        aSingleSmallTextModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
-                        aSingleSmallTextModel.RepositorychildId = Convert.ToInt32(aSqlDataReader["repositorychildId"].ToString());
-                        aSingleSmallTextModel.Data = aSqlDataReader["data"].ToString();
-                        aSingleSmallTextModel.Description = aSqlDataReader["description"].ToString();
-                    }
-                    list.Add(aSingleSmallTextModel);
-                }
-            }
-            return list;
-        }*/
+
         public SingleSmallTextModel getLastNameByUserId(int userid, int defaultId)
         {
             SingleSmallTextModel aSingleSmallTextModel = new SingleSmallTextModel();
@@ -145,34 +90,7 @@ namespace DataAccess.DbGateways
             }
             return aSingleSmallTextModel;
         }
-        /*public List<SingleSmallTextModel> getLastNameByUserId(int userid, int defaultId)
-        {
-            List<SingleSmallTextModel> list = new List<SingleSmallTextModel>();
-            using (SqlConnection aSqlConnection
-                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.CommandText = "get_About_lastName";
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("userId", userid);
-                    cmd.Parameters.AddWithValue("defaultId", defaultId);
-                    cmd.Connection = aSqlConnection;
-                    aSqlConnection.Open();
-                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();
-                    SingleSmallTextModel aSingleSmallTextModel = new SingleSmallTextModel();
-                    while (aSqlDataReader.Read())
-                    {
-                        aSingleSmallTextModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
-                        aSingleSmallTextModel.RepositorychildId = Convert.ToInt32(aSqlDataReader["repositorychildId"].ToString());
-                        aSingleSmallTextModel.Data = aSqlDataReader["data"].ToString();
-                        aSingleSmallTextModel.Description = aSqlDataReader["description"].ToString();
-                    }
-                    list.Add(aSingleSmallTextModel);
-                }
-            }
-            return list;
-        }*/
+
         public List<SmallTextListDataModel> getPhoneNumbersByUserId(int userid, int defaultId)
         {
             List<SmallTextListDataModel> list = new List<SmallTextListDataModel>();
@@ -283,34 +201,6 @@ namespace DataAccess.DbGateways
             }
             return aSingleDateModel;
         }
-        /*public List<SingleDateModel> getDobByUserId(int userid, int defaultId)
-        {
-            List<SingleDateModel> list = new List<SingleDateModel>();
-            using (SqlConnection aSqlConnection
-                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.CommandText = "get_About_dob";
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("userId", userid);
-                    cmd.Parameters.AddWithValue("defaultId", defaultId);
-                    cmd.Connection = aSqlConnection;
-                    aSqlConnection.Open();
-                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();
-                    SingleDateModel aSingleDateModel = new SingleDateModel();
-                    while (aSqlDataReader.Read())
-                    {
-                        aSingleDateModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
-                        aSingleDateModel.RepositorychildId = Convert.ToInt32(aSqlDataReader["repositorychildId"].ToString());
-                        aSingleDateModel.Data = Convert.ToDateTime(aSqlDataReader["data"].ToString());
-                        aSingleDateModel.Description = aSqlDataReader["description"].ToString();
-                    }
-                    list.Add(aSingleDateModel);
-                }
-            }
-            return list;
-        }*/
         public SingleSmallTextModel getCountryByUserId(int userid, int defaultId)
         {
             SingleSmallTextModel aSingleSmallTextModel = new SingleSmallTextModel();
@@ -337,34 +227,6 @@ namespace DataAccess.DbGateways
             }
             return aSingleSmallTextModel;
         }
-        /*public List<SingleSmallTextModel> getCountryByUserId(int userid, int defaultId)
-        {
-            List<SingleSmallTextModel> list = new List<SingleSmallTextModel>();
-            using (SqlConnection aSqlConnection
-                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.CommandText = "get_About_country";
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("userId", userid);
-                    cmd.Parameters.AddWithValue("defaultId", defaultId);
-                    cmd.Connection = aSqlConnection;
-                    aSqlConnection.Open();
-                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();
-                    SingleSmallTextModel aSingleSmallTextModel = new SingleSmallTextModel();
-                    while (aSqlDataReader.Read())
-                    {
-                        aSingleSmallTextModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
-                        aSingleSmallTextModel.RepositorychildId = Convert.ToInt32(aSqlDataReader["repositorychildId"].ToString());
-                        aSingleSmallTextModel.Data = aSqlDataReader["data"].ToString();
-                        aSingleSmallTextModel.Description = aSqlDataReader["description"].ToString();
-                    }
-                    list.Add(aSingleSmallTextModel);
-                }
-            }
-            return list;
-        }*/
         public SingleSmallTextModel getCityByUserId(int userid, int defaultId)
         {
             SingleSmallTextModel aSingleSmallTextModel = new SingleSmallTextModel();
@@ -391,34 +253,6 @@ namespace DataAccess.DbGateways
             }
             return aSingleSmallTextModel;
         }
-        /*        public List<SingleSmallTextModel> getCityByUserId(int userid, int defaultId)
-        {
-            List<SingleSmallTextModel> list = new List<SingleSmallTextModel>();
-            using (SqlConnection aSqlConnection
-                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.CommandText = "get_About_city";
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("userId", userid);
-                    cmd.Parameters.AddWithValue("defaultId", defaultId);
-                    cmd.Connection = aSqlConnection;
-                    aSqlConnection.Open();
-                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();
-                    SingleSmallTextModel aSingleSmallTextModel = new SingleSmallTextModel();
-                    while (aSqlDataReader.Read())
-                    {
-                        aSingleSmallTextModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
-                        aSingleSmallTextModel.RepositorychildId = Convert.ToInt32(aSqlDataReader["repositorychildId"].ToString());
-                        aSingleSmallTextModel.Data = aSqlDataReader["data"].ToString();
-                        aSingleSmallTextModel.Description = aSqlDataReader["description"].ToString();
-                    }
-                    list.Add(aSingleSmallTextModel);
-                }
-            }
-            return list;
-        }*/
         public SingleLargeTextModel getFullAddressByUserId(int userid, int defaultId)
         {
             SingleLargeTextModel aSingleLargeTextModel = new SingleLargeTextModel();
@@ -446,34 +280,6 @@ namespace DataAccess.DbGateways
             }
             return aSingleLargeTextModel;
         }
-        /*        public List<SingleLargeTextModel> getFullAddressByUserId(int userid, int defaultId)
-        {
-            List<SingleLargeTextModel> list = new List<SingleLargeTextModel>();
-            using (SqlConnection aSqlConnection
-                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.CommandText = "get_About_fullAddress";
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("userId", userid);
-                    cmd.Parameters.AddWithValue("defaultId", defaultId);
-                    cmd.Connection = aSqlConnection;
-                    aSqlConnection.Open();
-                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();
-                    SingleLargeTextModel aSingleLargeTextModel = new SingleLargeTextModel();
-                    while (aSqlDataReader.Read())
-                    {
-                        aSingleLargeTextModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
-                        aSingleLargeTextModel.RepositorychildId = Convert.ToInt32(aSqlDataReader["repositorychildId"].ToString());
-                        aSingleLargeTextModel.Data = aSqlDataReader["data"].ToString();
-                        aSingleLargeTextModel.Description = aSqlDataReader["description"].ToString();
-                    }
-                    list.Add(aSingleLargeTextModel);
-                }
-            }
-            return list;
-        }*/
         public List<OnlineLinkDataModel> getSocialLinksByUserId(int userid, int defaultId)
         {
             List<OnlineLinkDataModel> list = new List<OnlineLinkDataModel>();
@@ -533,33 +339,6 @@ namespace DataAccess.DbGateways
             }
             return aSingleSmallTextModel;
         }
-        /*        public List<SingleSmallTextModel> getFirstNameByUserId(int userid)
-        {
-            List<SingleSmallTextModel> list = new List<SingleSmallTextModel>();
-            using (SqlConnection aSqlConnection
-                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.CommandText = "get_About_firstName_ByUserId";
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("userId", userid);
-                    cmd.Connection = aSqlConnection;
-                    aSqlConnection.Open();
-                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();
-                    SingleSmallTextModel aSingleSmallTextModel = new SingleSmallTextModel();
-                    while (aSqlDataReader.Read())
-                    {
-                        aSingleSmallTextModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
-                        aSingleSmallTextModel.RepositorychildId = Convert.ToInt32(aSqlDataReader["repositorychildId"].ToString());
-                        aSingleSmallTextModel.Data = aSqlDataReader["data"].ToString();
-                        aSingleSmallTextModel.Description = aSqlDataReader["description"].ToString();
-                    }
-                    list.Add(aSingleSmallTextModel);
-                }
-            }
-            return list;
-        }*/
         public SingleSmallTextModel getMiddleNameByUserId(int userid)
         {
             SingleSmallTextModel aSingleSmallTextModel = new SingleSmallTextModel();
@@ -587,33 +366,7 @@ namespace DataAccess.DbGateways
             }
             return aSingleSmallTextModel;
         }
-        /*       public List<SingleSmallTextModel> getMiddleNameByUserId(int userid)
-        {
-            List<SingleSmallTextModel> list = new List<SingleSmallTextModel>();
-            using (SqlConnection aSqlConnection
-                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.CommandText = "get_About_middleName_ByUserId";
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("userId", userid);
-                    cmd.Connection = aSqlConnection;
-                    aSqlConnection.Open();
-                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();
-                    SingleSmallTextModel aSingleSmallTextModel = new SingleSmallTextModel();
-                    while (aSqlDataReader.Read())
-                    {
-                        aSingleSmallTextModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
-                        aSingleSmallTextModel.RepositorychildId = Convert.ToInt32(aSqlDataReader["repositorychildId"].ToString());
-                        aSingleSmallTextModel.Data = aSqlDataReader["data"].ToString();
-                        aSingleSmallTextModel.Description = aSqlDataReader["description"].ToString();
-                    }
-                    list.Add(aSingleSmallTextModel);
-                }
-            }
-            return list;
-        }*/
+
         public SingleSmallTextModel getLastNameByUserId(int userid)
         {
             SingleSmallTextModel aSingleSmallTextModel = new SingleSmallTextModel();
@@ -640,33 +393,7 @@ namespace DataAccess.DbGateways
             }
             return aSingleSmallTextModel;
         }
-        /*public List<SingleSmallTextModel> getLastNameByUserId(int userid)
-        {
-            List<SingleSmallTextModel> list = new List<SingleSmallTextModel>();
-            using (SqlConnection aSqlConnection
-                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.CommandText = "get_About_lastName_ByUserId";
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("userId", userid);
-                    cmd.Connection = aSqlConnection;
-                    aSqlConnection.Open();
-                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();
-                    SingleSmallTextModel aSingleSmallTextModel = new SingleSmallTextModel();
-                    while (aSqlDataReader.Read())
-                    {
-                        aSingleSmallTextModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
-                        aSingleSmallTextModel.RepositorychildId = Convert.ToInt32(aSqlDataReader["repositorychildId"].ToString());
-                        aSingleSmallTextModel.Data = aSqlDataReader["data"].ToString();
-                        aSingleSmallTextModel.Description = aSqlDataReader["description"].ToString();
-                    }
-                    list.Add(aSingleSmallTextModel);
-                }
-            }
-            return list;
-        }*/
+
         public List<SmallTextListDataModel> getPhoneNumbersByUserId(int userid)
         {
             List<SmallTextListDataModel> list = new List<SmallTextListDataModel>();
@@ -775,33 +502,7 @@ namespace DataAccess.DbGateways
             }
             return aSingleDateModel;
         }
-        /*public List<SingleDateModel> getDobByUserId(int userid)
-        {
-            List<SingleDateModel> list = new List<SingleDateModel>();
-            using (SqlConnection aSqlConnection
-                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.CommandText = "get_About_dob_ByUserId";
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("userId", userid);
-                    cmd.Connection = aSqlConnection;
-                    aSqlConnection.Open();
-                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();
-                    SingleDateModel aSingleDateModel = new SingleDateModel();
-                    while (aSqlDataReader.Read())
-                    {
-                        aSingleDateModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
-                        aSingleDateModel.RepositorychildId = Convert.ToInt32(aSqlDataReader["repositorychildId"].ToString());
-                        aSingleDateModel.Data = Convert.ToDateTime(aSqlDataReader["data"].ToString());
-                        aSingleDateModel.Description = aSqlDataReader["description"].ToString();
-                    }
-                    list.Add(aSingleDateModel);
-                }
-            }
-            return list;
-        }*/
+
         public SingleSmallTextModel getCountryByUserId(int userid)
         {
             SingleSmallTextModel aSingleSmallTextModel = new SingleSmallTextModel();
@@ -829,33 +530,7 @@ namespace DataAccess.DbGateways
             }
             return aSingleSmallTextModel;
         }
-        /*public List<SingleSmallTextModel> getCountryByUserId(int userid)
-        {
-            List<SingleSmallTextModel> list = new List<SingleSmallTextModel>();
-            using (SqlConnection aSqlConnection
-                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.CommandText = "get_About_country_ByUserId";
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("userId", userid);
-                    cmd.Connection = aSqlConnection;
-                    aSqlConnection.Open();
-                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();
-                    SingleSmallTextModel aSingleSmallTextModel = new SingleSmallTextModel();
-                    while (aSqlDataReader.Read())
-                    {
-                        aSingleSmallTextModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
-                        aSingleSmallTextModel.RepositorychildId = Convert.ToInt32(aSqlDataReader["repositorychildId"].ToString());
-                        aSingleSmallTextModel.Data = aSqlDataReader["data"].ToString();
-                        aSingleSmallTextModel.Description = aSqlDataReader["description"].ToString();
-                    }
-                    list.Add(aSingleSmallTextModel);
-                }
-            }
-            return list;
-        }*/
+
         public SingleSmallTextModel getCityByUserId(int userid)
         {
             SingleSmallTextModel aSingleSmallTextModel = new SingleSmallTextModel();
@@ -883,33 +558,7 @@ namespace DataAccess.DbGateways
             }
             return aSingleSmallTextModel;
         }
-        /*public List<SingleSmallTextModel> getCityByUserId(int userid)
-        {
-            List<SingleSmallTextModel> list = new List<SingleSmallTextModel>();
-            using (SqlConnection aSqlConnection
-                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.CommandText = "get_About_city_ByUserId";
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("userId", userid);
-                    cmd.Connection = aSqlConnection;
-                    aSqlConnection.Open();
-                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();
-                    SingleSmallTextModel aSingleSmallTextModel = new SingleSmallTextModel();
-                    while (aSqlDataReader.Read())
-                    {
-                        aSingleSmallTextModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
-                        aSingleSmallTextModel.RepositorychildId = Convert.ToInt32(aSqlDataReader["repositorychildId"].ToString());
-                        aSingleSmallTextModel.Data = aSqlDataReader["data"].ToString();
-                        aSingleSmallTextModel.Description = aSqlDataReader["description"].ToString();
-                    }
-                    list.Add(aSingleSmallTextModel);
-                }
-            }
-            return list;
-        }*/
+
         public SingleLargeTextModel getFullAddressByUserId(int userid)
         {
             SingleLargeTextModel aSingleLargeTextModel = new SingleLargeTextModel();
@@ -937,33 +586,7 @@ namespace DataAccess.DbGateways
             }
             return aSingleLargeTextModel;
         }
-        /*public List<SingleLargeTextModel> getFullAddressByUserId(int userid)
-        {
-            List<SingleLargeTextModel> list = new List<SingleLargeTextModel>();
-            using (SqlConnection aSqlConnection
-                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.CommandText = "get_About_fullAddress_ByUserId";
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("userId", userid);
-                    cmd.Connection = aSqlConnection;
-                    aSqlConnection.Open();
-                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();
-                    SingleLargeTextModel aSingleLargeTextModel = new SingleLargeTextModel();
-                    while (aSqlDataReader.Read())
-                    {
-                        aSingleLargeTextModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
-                        aSingleLargeTextModel.RepositorychildId = Convert.ToInt32(aSqlDataReader["repositorychildId"].ToString());
-                        aSingleLargeTextModel.Data = aSqlDataReader["data"].ToString();
-                        aSingleLargeTextModel.Description = aSqlDataReader["description"].ToString();
-                    }
-                    list.Add(aSingleLargeTextModel);
-                }
-            }
-            return list;
-        }*/
+
         public List<OnlineLinkDataModel> getSocialLinksByUserId(int userid)
         {
             List<OnlineLinkDataModel> list = new List<OnlineLinkDataModel>();
