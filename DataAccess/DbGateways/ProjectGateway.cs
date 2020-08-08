@@ -763,6 +763,57 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
+        public int UpdateProjectDefault(ProjectModel projectModel/*int userid, int defaultId*/)
+        {
+            int rowAffected = 0;
+            using (SqlConnection aSqlConnection
+                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "update projects_default set technologyTypeId = @technologyTypeId,	" +
+                        "imageId = @imageId,	projectNameId = @projectNameId,	projectSubNameId = @projectSubNameId," +
+                        "	projectBriefId = @projectBriefId,	projectKeyPointId = @projectKeyPointId," +
+                        "	projectTechnologyBriefId = @projectTechnologyBriefId,	projectTechnologieId = @projectTechnologieId,	" +
+                        "projectTechnologiesIconId = @projectTechnologiesIconId,	projectLiveLinkId = @projectLiveLinkId," +
+                        "	projectSourceLinkId = @projectSourceLinkId,	dateCreatedId = @dateCreatedId,	oneSingleBriefForWholeProjectId = @oneSingleBriefForWholeProjectId, where id = @id";
+                    //cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@id", projectModel.id);
+                    cmd.Parameters.AddWithValue("@technologyTypeId", projectModel.technologyTypeId);
+                    cmd.Parameters.AddWithValue("@imageId", projectModel.imageId);
+                    cmd.Parameters.AddWithValue("@projectNameId", projectModel.projectNameId);
+                    cmd.Parameters.AddWithValue("@projectSubNameId", projectModel.projectSubNameId);
+                    cmd.Parameters.AddWithValue("@projectBriefId", projectModel.projectBriefId);
+                    cmd.Parameters.AddWithValue("@projectKeyPointId", projectModel.projectKeyPointId);
+                    cmd.Parameters.AddWithValue("@projectTechnologyBriefId", projectModel.projectTechnologyBriefId);
+                    cmd.Parameters.AddWithValue("@projectTechnologieId", projectModel.projectTechnologieId);
+                    cmd.Parameters.AddWithValue("@projectTechnologiesIconId", projectModel.projectTechnologiesIconId);
+                    cmd.Parameters.AddWithValue("@projectLiveLinkId", projectModel.projectLiveLinkId);
+                    cmd.Parameters.AddWithValue("@projectSourceLinkId", projectModel.projectSourceLinkId);
+                    cmd.Parameters.AddWithValue("@dateCreatedId", projectModel.dateCreatedId);
+                    cmd.Parameters.AddWithValue("@oneSingleBriefForWholeProjectId", projectModel.oneSingleBriefForWholeProjectId);
+
+                    //cmd.Parameters.Add("returnBool", SqlDbType.Int);
+                    //cmd.Parameters["returnBool"].Direction = ParameterDirection.Output;
+                    cmd.Connection = aSqlConnection;
+                    try
+                    {
+                        aSqlConnection.Open();
+                        rowAffected = cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        //throw error
+                    }
+                    /*finally
+                    {
+                        aSqlConnection.Close();
+                    }*/
+                }
+            }
+            return rowAffected;
+        }
 
     }
 }
