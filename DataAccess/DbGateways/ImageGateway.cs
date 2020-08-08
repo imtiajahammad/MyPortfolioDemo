@@ -106,5 +106,40 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
+
+        public int UpdateExperienceDefault(SelfImageModel selfImageModel/*int userid, int defaultId*/)
+        {
+            int rowAffected = 0;
+            using (SqlConnection aSqlConnection
+                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "update selfImages_default SET homeImageListId = @homeImageListId where id = @id";
+                    //cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@id", selfImageModel.id);
+                    cmd.Parameters.AddWithValue("@homeImageListId", selfImageModel.homeImageListId);
+
+                    //cmd.Parameters.Add("returnBool", SqlDbType.Int);
+                    //cmd.Parameters["returnBool"].Direction = ParameterDirection.Output;
+                    cmd.Connection = aSqlConnection;
+                    try
+                    {
+                        aSqlConnection.Open();
+                        rowAffected = cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        //throw error
+                    }
+                    /*finally
+                    {
+                        aSqlConnection.Close();
+                    }*/
+                }
+            }
+            return rowAffected;
+        }
     }
 }
