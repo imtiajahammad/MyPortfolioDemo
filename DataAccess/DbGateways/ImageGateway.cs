@@ -107,7 +107,7 @@ namespace DataAccess.DbGateways
             return list;
         }
 
-        public int UpdateExperienceDefault(SelfImageModel selfImageModel/*int userid, int defaultId*/)
+        public int UpdateSelfImageDefault(SelfImageModel selfImageModel/*int userid, int defaultId*/)
         {
             int rowAffected = 0;
             using (SqlConnection aSqlConnection
