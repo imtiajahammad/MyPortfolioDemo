@@ -212,5 +212,42 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
+
+        public int UpdateSkillDefault(SkillModel skillModel/*int userid, int defaultId*/)
+        {
+            int rowAffected = 0;
+            using (SqlConnection aSqlConnection
+                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "update skills_default set topicNameId = @topicNameId,	subTopicNameId = @subTopicNameId,	percentageId = @percentageId where id = @id    ";
+                    //cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@id", skillModel.id);
+                    cmd.Parameters.AddWithValue("@topicNameId", skillModel.topicNameId);
+                    cmd.Parameters.AddWithValue("@subTopicNameId", skillModel.subTopicNameId);
+                    cmd.Parameters.AddWithValue("@percentageId", skillModel.percentageId);
+
+                    //cmd.Parameters.Add("returnBool", SqlDbType.Int);
+                    //cmd.Parameters["returnBool"].Direction = ParameterDirection.Output;
+                    cmd.Connection = aSqlConnection;
+                    try
+                    {
+                        aSqlConnection.Open();
+                        rowAffected = cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        //throw error
+                    }
+                    /*finally
+                    {
+                        aSqlConnection.Close();
+                    }*/
+                }
+            }
+            return rowAffected;
+        }
     }
 }
