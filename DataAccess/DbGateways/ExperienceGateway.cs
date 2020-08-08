@@ -535,5 +535,46 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
+        public int UpdateExperienceDefault(ExperienceModel experienceModel/*int userid, int defaultId*/)
+        {
+            int rowAffected = 0;
+            using (SqlConnection aSqlConnection
+                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "update experiences_default set companyNameId = @companyNameId,yourRoleId = @yourRoleId,responsibilityBriefId = @responsibilityBriefId, responsibilitiesPointId = @responsibilitiesPointId,accomplishmentsPointId = @accomplishmentsPointId, workLocationId = @workLocationId,startDateId = @startDateId,endDateId = @endDateId,companyLinkId = @companyLinkId where id = @id";
+                    //cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@id", experienceModel.id);
+                    cmd.Parameters.AddWithValue("@companyNameId", experienceModel.companyNameId);
+                    cmd.Parameters.AddWithValue("@yourRoleId", experienceModel.yourRoleId);
+                    cmd.Parameters.AddWithValue("@responsibilityBriefId", experienceModel.responsibilityBriefId);
+                    cmd.Parameters.AddWithValue("@responsibilitiesPointId", experienceModel.responsibilitiesPointId);
+                    cmd.Parameters.AddWithValue("@accomplishmentsPointId", experienceModel.accomplishmentsPointId);
+                    cmd.Parameters.AddWithValue("@workLocationId", experienceModel.workLocationId);
+                    cmd.Parameters.AddWithValue("@startDateId", experienceModel.startDateId);
+                    cmd.Parameters.AddWithValue("@endDateId", experienceModel.endDateId);
+                    cmd.Parameters.AddWithValue("@companyLinkId", experienceModel.companyLinkId);
+                    //cmd.Parameters.Add("returnBool", SqlDbType.Int);
+                    //cmd.Parameters["returnBool"].Direction = ParameterDirection.Output;
+                    cmd.Connection = aSqlConnection;
+                    try
+                    {
+                        aSqlConnection.Open();
+                        rowAffected = cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        //throw error
+                    }
+                    /*finally
+                    {
+                        aSqlConnection.Close();
+                    }*/
+                }
+            }
+            return rowAffected;
+        }
     }
 }
