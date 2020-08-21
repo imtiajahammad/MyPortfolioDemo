@@ -17,7 +17,7 @@ namespace MyPortfolioDemo.Controllers
             this.projectManager = new ProjectManager();
         }
         [HttpGet]
-        [Route("~api/project/{userId:int}")]
+        //[Route("~api/project/{userId:int}")]
         public List<ProjectProfileModel> Get(int userId)
         {
             List<ProjectModel> projectModels = projectManager.Get_ProjectsDefault_ByUserId(userId);

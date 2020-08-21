@@ -17,7 +17,7 @@ namespace MyPortfolioDemo.Controllers
             this.academicManager = new AcademicManager();
         }
         [HttpGet]
-        [Route("~/api/academic/{userId:int}")]
+        //[Route("~/api/academic/{userId:int}")]
         public List<AcademicProfileModel> Get(int userId)
         {
             List<AcademicModel> academicIds 

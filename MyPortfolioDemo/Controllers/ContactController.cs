@@ -17,7 +17,7 @@ namespace MyPortfolioDemo.Controllers
             this.contactManager = new ContactManager();
         }
         [HttpGet]
-        [Route("~api/contact/{userId:int}")]
+        //[Route("~api/contact/{userId:int}")]
         public List<ContactProfileModel> Get(int userId)
         {
             List<ContactModel> contactModels = contactManager.Get_ContactDefault_ByUserId(userId);
