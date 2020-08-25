@@ -279,7 +279,7 @@ namespace DataAccess.DbGateways
         }
 
 
-        public int DeleteSingleSmallTextModel(SingleSmallTextModel singleSmallTextModel/*int userid, int defaultId*/)
+        public int DeleteSingleSmallTextModel(int Id/*int userid, int defaultId*/)
         {
             int rowAffected = 0;
             using (SqlConnection aSqlConnection
@@ -289,7 +289,7 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "delete from singleSmallText_default  where id=@defaultId";
                     cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@defaultId", singleSmallTextModel.Id);
+                    cmd.Parameters.AddWithValue("@defaultId", Id);
                     cmd.Connection = aSqlConnection;
                     try
                     {
@@ -308,7 +308,7 @@ namespace DataAccess.DbGateways
             }
             return rowAffected;
         }
-        public int DeleteSingleLargeTextModel(SingleLargeTextModel singleLargeTextModel/*int userid, int defaultId*/)
+        public int DeleteSingleLargeTextModel(int Id/*int userid, int defaultId*/)
         {
             int rowAffected = 0;
             using (SqlConnection aSqlConnection
@@ -318,7 +318,7 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "delete from singleLargeText_default where id=@defaultId";
                     cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@defaultId", singleLargeTextModel.Id);
+                    cmd.Parameters.AddWithValue("@defaultId", Id);
                     cmd.Connection = aSqlConnection;
                     try
                     {
@@ -337,7 +337,7 @@ namespace DataAccess.DbGateways
             }
             return rowAffected;
         }
-        public int DeleteSingleIntegerModel(SingleIntegerModel singleIntegerModel/*int userid, int defaultId*/)
+        public int DeleteSingleIntegerModel(int Id/*int userid, int defaultId*/)
         {
             int rowAffected = 0;
             using (SqlConnection aSqlConnection
@@ -347,7 +347,7 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "delete from singleIntegerDefault where id=@defaultId";
                     cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@defaultId", singleIntegerModel.Id);
+                    cmd.Parameters.AddWithValue("@defaultId", Id);
                     cmd.Connection = aSqlConnection;
                     try
                     {
@@ -366,7 +366,7 @@ namespace DataAccess.DbGateways
             }
             return rowAffected;
         }
-        public int DeleteSingleDateModel(SingleDateModel singleDateModel/*int userid, int defaultId*/)
+        public int DeleteSingleDateModel(int Id/*int userid, int defaultId*/)
         {
             int rowAffected = 0;
             using (SqlConnection aSqlConnection
@@ -376,7 +376,7 @@ namespace DataAccess.DbGateways
                 {
                     cmd.CommandText = "delete from singleDateDefault where id=@defaultId";
                     cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@defaultId", singleDateModel.Id);
+                    cmd.Parameters.AddWithValue("@defaultId", Id);
                     cmd.Connection = aSqlConnection;
                     try
                     {
@@ -395,7 +395,7 @@ namespace DataAccess.DbGateways
             }
             return rowAffected;
         }
-        public int DeleteLargeTextListDataModel(LargeTextListDataModel largeTextListDataModel/*int userid, int defaultId*/)
+        public int DeleteLargeTextListDataModel(int Id/*int userid, int defaultId*/)
         {
             int rowAffected = 0;
             using (SqlConnection aSqlConnection
@@ -403,10 +403,11 @@ namespace DataAccess.DbGateways
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    cmd.CommandText = "delete From LargeTextListData where id=@defaultId and parentId=@parentId";
+                    cmd.CommandText = "delete From LargeTextListData where id=@defaultId";// and parentId=@parentId";
                     cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@defaultId", largeTextListDataModel.Id);
-                    cmd.Parameters.AddWithValue("@parentId", largeTextListDataModel.ParentId);
+                    cmd.Parameters.AddWithValue("@defaultId", Id);
+                    //cmd.Parameters.AddWithValue("@defaultId", largeTextListDataModel.Id);
+                    //cmd.Parameters.AddWithValue("@parentId", largeTextListDataModel.ParentId);
                     cmd.Connection = aSqlConnection;
                     try
                     {
@@ -425,7 +426,7 @@ namespace DataAccess.DbGateways
             }
             return rowAffected;
         }
-        public int DeleteSmallTextListDataModel(SmallTextListDataModel smallTextListDataModel/*int userid, int defaultId*/)
+        public int DeleteSmallTextListDataModel(int Id/*int userid, int defaultId*/)
         {
             int rowAffected = 0;
             using (SqlConnection aSqlConnection
@@ -433,10 +434,10 @@ namespace DataAccess.DbGateways
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    cmd.CommandText = "delete From smalltextListData where id=@defaultId and parentId=@parentId";
+                    cmd.CommandText = "delete From smalltextListData where id=@defaultId";// and parentId=@parentId";
                     cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@defaultId", smallTextListDataModel.Id);
-                    cmd.Parameters.AddWithValue("@parentId", smallTextListDataModel.ParentId);
+                    cmd.Parameters.AddWithValue("@defaultId", Id);
+                    //cmd.Parameters.AddWithValue("@parentId", smallTextListDataModel.ParentId);
                     cmd.Connection = aSqlConnection;
                     try
                     {
@@ -455,7 +456,7 @@ namespace DataAccess.DbGateways
             }
             return rowAffected;
         }
-        public int DeleteOnlineLinkDataModel(OnlineLinkDataModel onlineLinkDataModel/*int userid, int defaultId*/)
+        public int DeleteOnlineLinkDataModel(int Id/*int userid, int defaultId*/)
         {
             int rowAffected = 0;
             using (SqlConnection aSqlConnection
@@ -463,10 +464,10 @@ namespace DataAccess.DbGateways
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    cmd.CommandText = "delete From onlineLinkData where id=@defaultId and parentId=@parentId";
+                    cmd.CommandText = "delete From onlineLinkData where id=@defaultId";// and parentId=@parentId";
                     cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@defaultId", onlineLinkDataModel.Id);
-                    cmd.Parameters.AddWithValue("@parentId", onlineLinkDataModel.ParentId);
+                    cmd.Parameters.AddWithValue("@defaultId", Id);
+                    //cmd.Parameters.AddWithValue("@parentId", onlineLinkDataModel.ParentId);
                     cmd.Connection = aSqlConnection;
                     try
                     {
