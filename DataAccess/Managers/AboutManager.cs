@@ -129,5 +129,10 @@ namespace DataAccess.Managers
         {
             return aboutGateway.Get_AboutProfile_ByUserId(aboutids, userid);
         }
+
+        public List<SmallTextListDataModel> getEmailsByUserId(int userid, int defaultId)
+        {
+            return aboutGateway.getEmailsByUserId(userid, defaultId);
+        }
     }
 }
