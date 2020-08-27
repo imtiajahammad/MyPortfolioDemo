@@ -461,16 +461,16 @@ namespace DataAccess.DbGateways
                     cmd.Parameters.AddWithValue("userId", userid);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
-                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();
-                    SmallTextListDataModel aSmallTextListDataModel = new SmallTextListDataModel();
+                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();                    
                     while (aSqlDataReader.Read())
                     {
+                        SmallTextListDataModel aSmallTextListDataModel = new SmallTextListDataModel();
                         aSmallTextListDataModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
                         aSmallTextListDataModel.ParentId = Convert.ToInt32(aSqlDataReader["parentId"].ToString());
                         aSmallTextListDataModel.Data = aSqlDataReader["data"].ToString();
                         aSmallTextListDataModel.Description = aSqlDataReader["description"].ToString();
-                    }
-                    list.Add(aSmallTextListDataModel);
+                        list.Add(aSmallTextListDataModel);
+                    }                    
                 }
             }
             return list;
@@ -652,6 +652,7 @@ namespace DataAccess.DbGateways
                         aAboutModel.cityId = Convert.ToInt32(aSqlDataReader["cityId"].ToString());
                         aAboutModel.fullAddressId = Convert.ToInt32(aSqlDataReader["fullAddressId"].ToString());
                         aAboutModel.socialLinksId = Convert.ToInt32(aSqlDataReader["socialLinksId"].ToString());
+                        aAboutModel.emailsId = Convert.ToInt32(aSqlDataReader["emailsId"].ToString());
                     }
                     list.Add(aAboutModel);
                 }
@@ -678,6 +679,7 @@ namespace DataAccess.DbGateways
                 aAboutProfileModel.city = getCityByUserId(userid, aAboutModel.cityId);
                 aAboutProfileModel.fullAddress = getFullAddressByUserId(userid, aAboutModel.fullAddressId);
                 aAboutProfileModel.socialLinks = getSocialLinksByUserId(userid, aAboutModel.socialLinksId);
+                aAboutProfileModel.emails = getEmailsByUserId(userid, aAboutModel.emailsId);
                 list.Add(aAboutProfileModel);
             }
             return list;
@@ -691,7 +693,7 @@ namespace DataAccess.DbGateways
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    cmd.CommandText = "update about_default set firstNameId=@firstNameId,middleNameId=@middleNameId,lastNameId=@lastNameId,phoneNumberId=@phoneNumberId,briefId=@briefId,languageId=@languageId,dobId=@dobId,countryId=@countryId,cityId=@cityId,fullAddressId=@fullAddressId,socialLinksId=@socialLinksId where id=@id,";
+                    cmd.CommandText = "update about_default set firstNameId=@firstNameId,middleNameId=@middleNameId,lastNameId=@lastNameId,phoneNumberId=@phoneNumberId,briefId=@briefId,languageId=@languageId,dobId=@dobId,countryId=@countryId,cityId=@cityId,fullAddressId=@fullAddressId,socialLinksId=@socialLinksId,emailsId=@emailsId where id=@id,";
                     //cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Clear();
                     cmd.Parameters.AddWithValue("@id", aboutModel.id);
@@ -706,6 +708,7 @@ namespace DataAccess.DbGateways
                     cmd.Parameters.AddWithValue("@cityId", aboutModel.cityId);
                     cmd.Parameters.AddWithValue("@fullAddressId", aboutModel.fullAddressId);
                     cmd.Parameters.AddWithValue("@socialLinksId", aboutModel.socialLinksId);
+                    cmd.Parameters.AddWithValue("@emailsId", aboutModel.emailsId);
                      											
                     //cmd.Parameters.Add("returnBool", SqlDbType.Int);
                     //cmd.Parameters["returnBool"].Direction = ParameterDirection.Output;
@@ -729,7 +732,41 @@ namespace DataAccess.DbGateways
             return rowAffected;
         }
 
-
+        public List<SmallTextListDataModel> getEmailsByUserId(int userid, int defaultId)
+        {
+            List<SmallTextListDataModel> list = new List<SmallTextListDataModel>();
+            using (SqlConnection aSqlConnection
+                = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "select stldata.id,stldata.parentId,stldata.[data],stldata.[description] from users u " +
+                        "inner join users_links ul on u.userId = ul.id and ul.entityParentId = 6 " +
+                        "inner join about_default ad on ad.id = ul.entityId " +
+                        "inner join smalltextListDefault stld on stld.id = ad.emailsId " +
+                        "inner join smalltextListData stldata on stldata.parentId = stld.id " +
+                        "and u.userId = @userid " +
+                        "and stld.id = @defaultId";
+                    /*cmd.CommandType = CommandType.StoredProcedure;*/
+                    cmd.Parameters.AddWithValue("userid", userid);
+                    cmd.Parameters.AddWithValue("defaultId", defaultId);
+                    cmd.Connection = aSqlConnection;
+                    aSqlConnection.Open();
+                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();                    
+                    while (aSqlDataReader.Read())
+                    {
+                        SmallTextListDataModel aSmallTextListDataModel = new SmallTextListDataModel();
+                        aSmallTextListDataModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
+                        aSmallTextListDataModel.ParentId = Convert.ToInt32(aSqlDataReader["parentId"].ToString());
+                        aSmallTextListDataModel.Data = aSqlDataReader["data"].ToString();
+                        aSmallTextListDataModel.Description = aSqlDataReader["description"].ToString();
+                        list.Add(aSmallTextListDataModel);
+                    }
+                    
+                }
+            }
+            return list;
+        }
 
     }
 }
