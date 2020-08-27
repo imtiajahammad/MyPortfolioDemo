@@ -18,6 +18,7 @@ namespace MyPortfolioDemo.Controllers
         }
         [HttpGet]
         //[Route("~/api/careerAdjective/{userId:int}")]
+        [Route("~/api/careerAdjective/{userId:int}")]
         public List<CareerAdjectiveProfileModel> Get(int userId)
         {
             List<CareerAdjectiveModel> careerAdjectiveIds = careerAdjectiveManager.Get_CareerAdjectiveDefault_ByUserId(userId);
