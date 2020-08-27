@@ -19,5 +19,6 @@ namespace DataAccess.Models
         public int cityId { get; set; }
         public int fullAddressId { get; set; }
         public int socialLinksId { get; set; }
+        public int emailsId { get; set; }
     }
 }
