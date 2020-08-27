@@ -19,6 +19,7 @@ namespace MyPortfolioDemo.Controllers
 
         [HttpGet]
         //[Route("~api/image/{userId:int}")]
+        [Route("~/api/experience/{userId:int}")]
         public List<ExperienceProfileModel> Get(int userId)
         {
             List<ExperienceModel> experienceModels = experienceManager.Get_ExperiencesDefault_ByUserId(userId);

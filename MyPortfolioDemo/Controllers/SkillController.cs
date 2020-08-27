@@ -18,6 +18,7 @@ namespace MyPortfolioDemo.Controllers
         }
         [HttpGet]
         //[Route("~api/skill/{userId:int}")]
+        [Route("~/api/skill/{userId:int}")]
         public List<SkillProfileModel> Get(int userId)
         {
             List<SkillModel> skillModels = skillManager.Get_SkillsDefault_ByUserId(userId);

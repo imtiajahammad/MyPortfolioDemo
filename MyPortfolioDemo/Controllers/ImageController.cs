@@ -19,7 +19,8 @@ namespace MyPortfolioDemo.Controllers
 
         [HttpGet]
         //[Route("~api/image/{userId:int}")]
-        public List<SelfImagProfileModel> Get(int userId)
+        [Route("~/api/selfImage/{userId:int}")]
+        public List<SelfImageProfileModel> Get(int userId)
         {
             List<SelfImageModel> selfImageModels = imageManager.Get_SelfImagesDefault_ByUserId(userId);
             return imageManager.Get_SelfImagProfile_ByUserId(selfImageModels, userId);
