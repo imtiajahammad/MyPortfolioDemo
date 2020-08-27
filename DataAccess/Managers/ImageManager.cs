@@ -30,7 +30,7 @@ namespace DataAccess.Managers
             return imageGateway.Get_SelfImagesDefault_ByUserId(userid);
         }
 
-        public List<SelfImagProfileModel> Get_SelfImagProfile_ByUserId(List<SelfImageModel> selfImagids, int userid)
+        public List<SelfImageProfileModel> Get_SelfImagProfile_ByUserId(List<SelfImageModel> selfImagids, int userid)
         { 
             return imageGateway.Get_SelfImagProfile_ByUserId(selfImagids,userid);
         }

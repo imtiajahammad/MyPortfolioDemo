@@ -5,7 +5,7 @@ using System.Web;
 
 namespace DataAccess.Models
 {
-    public class SelfImagProfileModel
+    public class SelfImageProfileModel
     {
         public int id { get; set; }
         public List<SmallTextListDataModel> homeImageList { get; set; }

@@ -12,7 +12,7 @@ namespace DataAccess.Models
         public ProjectProfileModel projectProfileModel { get; set; }
         public ContactProfileModel contactProfileModel { get; set; }
         public AboutProfileModel aboutProfileModel { get; set; }
-        public SelfImagProfileModel selfImagProfileModel { get; set; }
+        public SelfImageProfileModel selfImagProfileModel { get; set; }
         public ExperienceProfileModel experienceProfileModel { get; set; }
         public BlogProfileModel blogProfileModel { get; set; }
         public ToolsIUseModel toolsIUseModel { get; set; } 

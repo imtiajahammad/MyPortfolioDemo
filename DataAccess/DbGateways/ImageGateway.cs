@@ -94,12 +94,12 @@ namespace DataAccess.DbGateways
             return list;
         }
 
-        public List<SelfImagProfileModel> Get_SelfImagProfile_ByUserId(List<SelfImageModel> selfImagids, int userid)
+        public List<SelfImageProfileModel> Get_SelfImagProfile_ByUserId(List<SelfImageModel> selfImagids, int userid)
         {
-            List<SelfImagProfileModel> list = new List<SelfImagProfileModel>();
+            List<SelfImageProfileModel> list = new List<SelfImageProfileModel>();
             foreach (SelfImageModel aSelfImageModel in selfImagids)
             {
-                SelfImagProfileModel aSelfImagProfileModel = new SelfImagProfileModel();
+                SelfImageProfileModel aSelfImagProfileModel = new SelfImageProfileModel();
                 aSelfImagProfileModel.id = aSelfImageModel.id;
                 aSelfImagProfileModel.homeImageList = getHomeImageByUserId(userid, aSelfImageModel.homeImageListId);
                 list.Add(aSelfImagProfileModel);
