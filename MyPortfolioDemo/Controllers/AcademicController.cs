@@ -18,6 +18,7 @@ namespace MyPortfolioDemo.Controllers
         }
         [HttpGet]
         //[Route("~/api/academic/{userId:int}")]
+        [Route("~/api/academic/{userId:int}")]
         public List<AcademicProfileModel> Get(int userId)
         {
             List<AcademicModel> academicIds 
