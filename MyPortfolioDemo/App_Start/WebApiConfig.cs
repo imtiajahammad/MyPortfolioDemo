@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace MyPortfolioDemo
 {
@@ -19,6 +20,15 @@ namespace MyPortfolioDemo
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+            
+            EnableCorsAttribute cors = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(cors);
+
+
+
+            ///If you want to only send json format, ignoring whatever accept type in the request header, you need to use this.
+            ///            
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
         }
     }
 }
