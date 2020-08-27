@@ -19,6 +19,7 @@ namespace DataAccess.Models
         public SingleSmallTextModel city { get; set; }
         public SingleLargeTextModel fullAddress { get; set; }
         public List<OnlineLinkDataModel> socialLinks { get; set; }
+        public List<SmallTextListDataModel> emails { get; set; }
 
     }
 }
