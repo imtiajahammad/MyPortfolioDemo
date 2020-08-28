@@ -133,16 +133,16 @@ namespace DataAccess.DbGateways
                     cmd.Parameters.AddWithValue("defaultId", defaultId);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
-                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();
-                    LargeTextListDataModel aLargeTextListDataModel = new LargeTextListDataModel();
+                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();                    
                     while (aSqlDataReader.Read())
                     {
+                        LargeTextListDataModel aLargeTextListDataModel = new LargeTextListDataModel();
                         aLargeTextListDataModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
                         aLargeTextListDataModel.ParentId = Convert.ToInt32(aSqlDataReader["parentId"].ToString());
                         aLargeTextListDataModel.Data = aSqlDataReader["data"].ToString();
                         aLargeTextListDataModel.Description = aSqlDataReader["description"].ToString();
-                    }
-                    list.Add(aLargeTextListDataModel);
+                        list.Add(aLargeTextListDataModel);
+                    }                    
                 }
             }
             return list;
@@ -726,6 +726,7 @@ namespace DataAccess.DbGateways
                         aProjectModel.projectSubNameId = Convert.ToInt32(aSqlDataReader["projectSubNameId"].ToString());
                         aProjectModel.projectBriefId = Convert.ToInt32(aSqlDataReader["projectBriefId"].ToString());
                         aProjectModel.projectKeyPointId = Convert.ToInt32(aSqlDataReader["projectKeyPointId"].ToString());
+                        aProjectModel.projectTechnologyBriefId = Convert.ToInt32(aSqlDataReader["projectTechnologyBriefId"].ToString());
                         aProjectModel.dateCreatedId = Convert.ToInt32(aSqlDataReader["dateCreatedId"].ToString());                  
                         aProjectModel.projectTechnologieId = Convert.ToInt32(aSqlDataReader["projectTechnologieId"].ToString());
                         aProjectModel.projectTechnologiesIconId = Convert.ToInt32(aSqlDataReader["projectTechnologiesIconId"].ToString());
@@ -739,7 +740,7 @@ namespace DataAccess.DbGateways
             }
             return list;
         }
-        public List<ProjectProfileModel> Get_SelfImagProfile_ByUserId(List<ProjectModel> projectids, int userid)
+        public List<ProjectProfileModel> Get_ProjectImagProfile_ByUserId(List<ProjectModel> projectids, int userid)
         {
             List<ProjectProfileModel> list = new List<ProjectProfileModel>();
             foreach (ProjectModel aProjectModel in projectids)
