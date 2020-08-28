@@ -22,7 +22,7 @@ namespace MyPortfolioDemo.Controllers
         public List<ProjectProfileModel> Get(int userId)
         {
             List<ProjectModel> projectModels = projectManager.Get_ProjectsDefault_ByUserId(userId);
-            return projectManager.Get_SelfImagProfile_ByUserId(projectModels, userId);
+            return projectManager.Get_ProjectProfile_ByUserId(projectModels, userId);
         }
     }
 }
