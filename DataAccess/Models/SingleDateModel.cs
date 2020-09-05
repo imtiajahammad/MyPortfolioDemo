@@ -9,7 +9,7 @@ namespace DataAccess.Models
     {
         public int Id { get; set; }
         public int RepositorychildId { get; set; }
-        public DateTime Data { get; set; }
+        public string /*DateTime*/ Data { get; set; }
         public string Description { get; set; }
     }
 }
