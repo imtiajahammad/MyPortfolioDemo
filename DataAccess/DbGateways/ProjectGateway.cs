@@ -330,7 +330,7 @@ namespace DataAccess.DbGateways
                     {
                         aSingleDateModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
                         aSingleDateModel.RepositorychildId = Convert.ToInt32(aSqlDataReader["repositorychildId"].ToString());
-                        aSingleDateModel.Data = Convert.ToDateTime(aSqlDataReader["data"].ToString());
+                        aSingleDateModel.Data = /*Convert.ToDateTime(*/aSqlDataReader["data"].ToString()/*)*/;
                         aSingleDateModel.Description = aSqlDataReader["description"].ToString();
                     }
                 }
@@ -669,7 +669,7 @@ namespace DataAccess.DbGateways
                     {
                         aSingleDateModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
                         aSingleDateModel.RepositorychildId = Convert.ToInt32(aSqlDataReader["repositorychildId"].ToString());
-                        aSingleDateModel.Data =Convert.ToDateTime(aSqlDataReader["data"].ToString());
+                        aSingleDateModel.Data =/*Convert.ToDateTime(*/aSqlDataReader["data"].ToString()/*)*/;
                         aSingleDateModel.Description = aSqlDataReader["description"].ToString();
                     }
                 }
