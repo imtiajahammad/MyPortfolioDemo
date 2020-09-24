@@ -67,7 +67,7 @@ namespace DataAccess.Managers
             return projectGateway.getOneSingleBriefForWholeProjectByUserId(userid, defaultId);
         }
         /**/
-        public SmallTextListDataModel getTechnologyTypeByUserId(int userid)
+        public List<SmallTextListDataModel> getTechnologyTypeByUserId(int userid)
         { 
             return projectGateway.getTechnologyTypeByUserId(userid);
         }

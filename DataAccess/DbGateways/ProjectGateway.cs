@@ -24,16 +24,17 @@ namespace DataAccess.DbGateways
                     cmd.Parameters.AddWithValue("defaultId", defaultId);
                     cmd.Connection = aSqlConnection;
                     aSqlConnection.Open();
-                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();
-                    SmallTextListDataModel aSmallTextListDataModel = new SmallTextListDataModel();
+                    SqlDataReader aSqlDataReader = cmd.ExecuteReader();                    
                     while (aSqlDataReader.Read())
                     {
+                        SmallTextListDataModel aSmallTextListDataModel = new SmallTextListDataModel();
                         aSmallTextListDataModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
                         aSmallTextListDataModel.ParentId = Convert.ToInt32(aSqlDataReader["parentId"].ToString());
                         aSmallTextListDataModel.Data = aSqlDataReader["data"].ToString();
                         aSmallTextListDataModel.Description = aSqlDataReader["description"].ToString();
+                        list.Add(aSmallTextListDataModel);
                     }
-                    list.Add(aSmallTextListDataModel);
+                    
                 }
             }
             return list;
@@ -364,9 +365,9 @@ namespace DataAccess.DbGateways
             return aSingleLargeTextModel;
         }
         /**/
-        public SmallTextListDataModel getTechnologyTypeByUserId(int userid)
+        public List<SmallTextListDataModel> getTechnologyTypeByUserId(int userid)
         {
-            SmallTextListDataModel aSmallTextListDataModel = new SmallTextListDataModel();
+            List<SmallTextListDataModel> SmallTextListDataModelLIst = new List<SmallTextListDataModel>();
             using (SqlConnection aSqlConnection
                 = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
@@ -380,14 +381,16 @@ namespace DataAccess.DbGateways
                     SqlDataReader aSqlDataReader = cmd.ExecuteReader();
                     while (aSqlDataReader.Read())
                     {
+                        SmallTextListDataModel aSmallTextListDataModel = new SmallTextListDataModel();
                         aSmallTextListDataModel.Id = Convert.ToInt32(aSqlDataReader["id"].ToString());
                         aSmallTextListDataModel.ParentId = Convert.ToInt32(aSqlDataReader["parentId"].ToString());
                         aSmallTextListDataModel.Data = aSqlDataReader["data"].ToString();
                         aSmallTextListDataModel.Description = aSqlDataReader["description"].ToString();
+                        SmallTextListDataModelLIst.Add(aSmallTextListDataModel);
                     }
                 }
             }
-            return aSmallTextListDataModel;
+            return SmallTextListDataModelLIst;
         }
         public List<SmallTextListDataModel> getImagesByUserId(int userid)
         {
